@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="rentcarsModelStoreContainer" CdmEntityContainer="rentcarsEntities">
+    <EntitySetMapping Name="branches">
+      <EntityTypeMapping TypeName="rentcarsModel.branch">
+        <MappingFragment StoreEntitySet="branch">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="Branchaddress" ColumnName="Branchaddress" />
+          <ScalarProperty Name="locationX" ColumnName="locationX" />
+          <ScalarProperty Name="locationY" ColumnName="locationY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="carRentalDetails">
+      <EntityTypeMapping TypeName="rentcarsModel.carRentalDetail">
+        <MappingFragment StoreEntitySet="carRentalDetails">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="returnDate" ColumnName="returnDate" />
+          <ScalarProperty Name="actualReturnDate" ColumnName="actualReturnDate" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="carNumber" ColumnName="carNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cars">
+      <EntityTypeMapping TypeName="rentcarsModel.car">
+        <MappingFragment StoreEntitySet="cars">
+          <ScalarProperty Name="carNumber" ColumnName="carNumber" />
+          <ScalarProperty Name="carType" ColumnName="carType" />
+          <ScalarProperty Name="imagePath" ColumnName="imagePath" />
+          <ScalarProperty Name="isAvailable" ColumnName="isAvailable" />
+          <ScalarProperty Name="isUndamaged" ColumnName="isUndamaged" />
+          <ScalarProperty Name="region" ColumnName="region" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="carTypes">
+      <EntityTypeMapping TypeName="rentcarsModel.carType">
+        <MappingFragment StoreEntitySet="carTypes">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="manufacturer" ColumnName="manufacturer" />
+          <ScalarProperty Name="model" ColumnName="model" />
+          <ScalarProperty Name="dailyCost" ColumnName="dailyCost" />
+          <ScalarProperty Name="dailyPenalty" ColumnName="dailyPenalty" />
+          <ScalarProperty Name="manufacturingYear" ColumnName="manufacturingYear" />
+          <ScalarProperty Name="gearType" ColumnName="gearType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="rentcarsModel.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="countryId" ColumnName="countryId" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="dateOfBirth" ColumnName="dateOfBirth" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="userPassword" ColumnName="userPassword" />
+          <ScalarProperty Name="pathPhoto" ColumnName="pathPhoto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

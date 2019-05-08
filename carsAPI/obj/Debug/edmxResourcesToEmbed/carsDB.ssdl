@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="rentcarsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="branch">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BranchName" Type="varchar" MaxLength="100" />
+    <Property Name="Branchaddress" Type="varchar" MaxLength="1000" />
+    <Property Name="locationX" Type="int" />
+    <Property Name="locationY" Type="int" />
+  </EntityType>
+  <EntityType Name="carRentalDetails">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="startDate" Type="datetime" Nullable="false" />
+    <Property Name="returnDate" Type="datetime" Nullable="false" />
+    <Property Name="actualReturnDate" Type="datetime" Nullable="false" />
+    <Property Name="userId" Type="int" />
+    <Property Name="carNumber" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="cars">
+    <Key>
+      <PropertyRef Name="carNumber" />
+    </Key>
+    <Property Name="carNumber" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="carType" Type="int" />
+    <Property Name="imagePath" Type="varchar" MaxLength="1000" />
+    <Property Name="isAvailable" Type="bit" Nullable="false" />
+    <Property Name="isUndamaged" Type="bit" Nullable="false" />
+    <Property Name="region" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="carTypes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="manufacturer" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="model" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="dailyCost" Type="float" Nullable="false" />
+    <Property Name="dailyPenalty" Type="float" Nullable="false" />
+    <Property Name="manufacturingYear" Type="date" Nullable="false" />
+    <Property Name="gearType" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="firstName" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="lastName" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="countryId" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="userName" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="dateOfBirth" Type="date" />
+    <Property Name="gender" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="userPassword" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="pathPhoto" Type="varchar" MaxLength="1000" />
+  </EntityType>
+  <Association Name="FK__carRental__carNu__534D60F1">
+    <End Role="cars" Type="Self.cars" Multiplicity="0..1" />
+    <End Role="carRentalDetails" Type="Self.carRentalDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cars">
+        <PropertyRef Name="carNumber" />
+      </Principal>
+      <Dependent Role="carRentalDetails">
+        <PropertyRef Name="carNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__carRental__userI__52593CB8">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="carRentalDetails" Type="Self.carRentalDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="carRentalDetails">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__cars__carType__4D94879B">
+    <End Role="carTypes" Type="Self.carTypes" Multiplicity="0..1" />
+    <End Role="cars" Type="Self.cars" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="carTypes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cars">
+        <PropertyRef Name="carType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="rentcarsModelStoreContainer">
+    <EntitySet Name="branch" EntityType="Self.branch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="carRentalDetails" EntityType="Self.carRentalDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cars" EntityType="Self.cars" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="carTypes" EntityType="Self.carTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__carRental__carNu__534D60F1" Association="Self.FK__carRental__carNu__534D60F1">
+      <End Role="cars" EntitySet="cars" />
+      <End Role="carRentalDetails" EntitySet="carRentalDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__carRental__userI__52593CB8" Association="Self.FK__carRental__userI__52593CB8">
+      <End Role="users" EntitySet="users" />
+      <End Role="carRentalDetails" EntitySet="carRentalDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__cars__carType__4D94879B" Association="Self.FK__cars__carType__4D94879B">
+      <End Role="carTypes" EntitySet="carTypes" />
+      <End Role="cars" EntitySet="cars" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
