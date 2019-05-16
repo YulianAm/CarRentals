@@ -88,3 +88,6 @@ D:\repos\finalproject\carsAPI\carsAPI\obj\Debug\carsAPI.csproj.CoreCompileInputs
 D:\repos\finalproject\carsAPI\carsAPI\obj\Debug\carsAPI.csproj.CopyComplete
 D:\repos\finalproject\carsAPI\carsAPI\obj\Debug\carsAPI.dll
 D:\repos\finalproject\carsAPI\carsAPI\obj\Debug\carsAPI.pdb
+D:\repos\finalproject\carsAPI\carsAPI\bin\System.Web.Cors.dll
+D:\repos\finalproject\carsAPI\carsAPI\bin\System.Web.Http.Cors.dll
+D:\repos\finalproject\carsAPI\carsAPI\bin\System.Web.Http.Cors.xml
