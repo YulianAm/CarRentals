@@ -30,6 +30,8 @@ namespace carsAPI
         public string email { get; set; }
         public string userPassword { get; set; }
         public string pathPhoto { get; set; }
+        public Nullable<bool> isAdmin { get; set; }
+        public byte[] image { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<carRentalDetail> carRentalDetails { get; set; }

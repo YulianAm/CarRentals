@@ -1,0 +1,159 @@
+
+
+<form #userForm="ngForm" ngNativeValidate (ngSubmit)="Create(user)" >
+    <div class = "panel panel-primary" >
+    
+        <div class="panel-heading">
+          <h3 class="panel-title"> Create User  </h3>
+        </div>
+    
+        <div class="panel-body">
+    
+          <div class="form-group"  [class.has-success]="firstNameControl.valid" [class.has-error]="firstNameControl.invalid && firstNameControl.touched">
+            <label class="control-label" for="firstName">First Name </label>
+            <input  #firstNameControl="ngModel" required id="firstName" name="firstName" [(ngModel)]="user.firstName" type="text" class="form-control">
+            <span class="help-block" *ngIf="firstNameControl.invalid && firstNameControl.touched">
+                First Name is required
+              </span>
+    
+    
+            
+          </div>
+          
+          
+    
+          <div class="form-group" [class.has-success]="firstNameControl.valid" [class.has-error]="lastNameControl.invalid && lastNameControl.touched">
+              <label for="lastName">Last Name </label>
+              <input #lastNameControl="ngModel" required id="lastName" name="lastName" [(ngModel)]="user.lastName" type="text" class="form-control">
+              <span class="help-block" *ngIf="lastNameControl.invalid && lastNameControl.touched">
+                Last Name is required
+              </span>
+            </div>
+    
+            <div class="form-group" [class.has-success]="idControl.valid" [class.has-error]="idControl.invalid && idControl.touched">
+                <label for="countryId">Country Id </label>
+                <input #idControl="ngModel" required id="countryId" name="countryId" [(ngModel)]="user.countryId"  type="text" class="form-control">
+                <span class="help-block" *ngIf="idControl.invalid && idControl.touched">
+                  Country Id is required
+                </span>
+              </div>
+    
+              <div class="form-group" [class.has-success]="userNameControl.valid" [class.has-error]="userNameControl.invalid && userNameControl.touched">
+                  <label for="userName">User Name </label>
+                  <input #userNameControl="ngModel" required id="userName" name="userName" [(ngModel)]="user.userName"  type="text" class="form-control">
+                  <span class="help-block" *ngIf="userNameControl.invalid && userNameControl.touched">
+                    User Name is required
+                  </span>
+                </div>
+    
+                <div class="form-group"
+         [class.has-error]="password.touched && password.invalid">
+      <label for="password" class="control-label">Password</label>
+      <input id="password" required type="text" class="form-control"
+             name="password" [(ngModel)]="user.userPassword"
+             #password="ngModel">
+      <span class="help-block"
+            *ngIf="password.touched && password.errors?.required">
+        Password is required
+      </span>
+    </div>
+    
+                  <div class="form-group"
+         [class.has-error]="confirmPassword.touched && confirmPassword.invalid">
+      <label for="confirmPassword" class="control-label">Confirm Password</label>
+      <input name="confirmPassword" appConfirmEqualValidator="password" required
+             id="confirmPassword" type="text" class="form-control"
+             [(ngModel)]="user.confirmPassword" #confirmPassword="ngModel">
+      <span class="help-block"
+            *ngIf="confirmPassword.touched && confirmPassword.errors?.required">
+        Confirm Password is required
+      </span>
+      <span class="help-block"
+            *ngIf="confirmPassword.touched && confirmPassword.errors?.notEqual &&
+              !confirmPassword.errors?.required">
+        Password and Confirm Password does not match
+      </span>
+    </div>
+    
+                  <div class="form-group " [class.has-success]="dateControl.valid" [class.has-error]="dateControl.invalid && dateControl.touched">
+                      <label for="dateOfBirth">Date Of Birth </label>
+                      <input #dateControl="ngModel" required id="dateOfBirth" name="dateOfBirth" [(ngModel)]="user.dateOfBirth" type="date"  class="form-control">
+                      <span class="help-block" *ngIf="dateControl.invalid && dateControl.touched">
+                        Date Of Birth is required
+                      </span>
+                    </div>
+    
+                    
+    
+    
+          <div class="form-group" [class.has-success]="emailControl.valid" [class.has-error]="emailControl.invalid && emailControl.touched">
+            <label for="email" class="control-label"> Email </label>
+            <input #emailControl="ngModel" required pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" id="email" name="email" [(ngModel)]="user.email" type="text" class="form-control">
+          <span class="help-block" *ngIf="emailControl.errors?.required && emailControl.touched">
+            Email is required
+          </span>
+          <span class="help-block" *ngIf="emailControl.errors?.pattern && lastNameControl.touched">
+            Email is invalid
+          </span>
+        </div>
+    
+        
+    
+            
+          
+          <div class="form-group">
+            <label for="pathPhoto"> Path Photo </label>
+            <input id="pathPhoto" name="pathPhoto" [(ngModel)]="user.pathPhoto" type="text" class="form-control">
+          </div>
+    
+          
+    
+    
+    
+        <div class="form-group" [class.has-error]="gender.invalid  && gender.touched"> 
+            <label class="control-label"> Gender </label>
+          <div class="form-control">  
+          <label class="radio-inline">
+            <input type="radio" required value="male" #gender="ngModel" name="gender" [(ngModel)]="user.gender">
+            Male
+          </label>
+          <label class="radio-inline">
+              <input type="radio" required value="female" #gender="ngModel" name="gender" [(ngModel)]="user.gender">
+              Female
+         </label>
+         <span class="help-block" *ngIf="gender.invalid  && gender.touched">
+          gender is required
+        </span>
+         </div>
+    <br>
+         <div class="form-check" [class.has-error]="gender.invalid  && gender.touched">
+          <label for="isAdmin">Is Admin?  </label> <br>
+          <input #isAdminControl="ngModel" value="isAdmin" id="isAdmin" name="isAdmin" [(ngModel)]="user.isAdmin"  type="checkbox" class="form-check-input">
+          <span class="help-block" *ngIf="isAdminControl.invalid  && isAdminControl.touched">
+            is Admin is required
+          </span>
+        </div>
+    
+        <h1> file upload </h1>
+    <input type = "file" (change)="onFileSelect($event)">
+    <button type="button" (click)="onUpload()"> Upload </button>
+    
+        
+        </div>
+      </div>
+    
+          <div class="panel-footer">
+              <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+    </div>
+    
+    </form>
+    
+    
+    
+    
+    Angular generated form model: {{userForm.value | json}}
+    <br><br>
+    Our user model: {{ user | json }}
+    
+    

@@ -1,0 +1,81 @@
+
+
+
+
+<div class = "panel panel-primary" *ngFor=" let car of cars ; index as i">
+  <div class="panel-heading">
+    <h3 class="panel-title"># {{ i+1 }} |   {{car.carNumber}}  {{car.region}} |  </h3>
+  </div>
+  <div class="panel-body">
+  <div class="col-xs-10">
+    <div class="row vertical-align" >
+      <div  class="col-xs-4">
+        <img height="150" width="220" src=" {{ car.imagePath }} "  >
+      </div>
+  
+      <div class="col-xs-8">
+       
+  
+          <div class="row">
+              <div class="col-xs-4">
+                  car number
+              </div>
+              <div class="col-xs-4">
+                   {{ car.carNumber }}
+              </div>
+          </div>
+          
+          <div class="row">
+              <div class="col-xs-4">
+                  car type 
+              </div>
+              <div class="col-xs-4">
+                     {{ car.carType }}
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-xs-4">
+                  available? 
+              </div>
+              <div class="col-xs-4">
+                    {{ car.isAvailable }}
+              </div>
+          </div>
+          
+          <div class="row">
+              <div class="col-xs-4">
+                  is undamaged?
+              </div>
+              <div class="col-xs-4">
+                    {{ car.isUndamaged  }}
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-xs-4">
+                  region
+              </div>
+              <div class="col-xs-4">
+                    {{ car.region }}
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-xs-4">
+                  mileage
+              </div>
+              <div class="col-xs-4">
+                    {{ car.mileage }}
+              </div>
+          </div>
+          
+         
+  
+            
+      </div>
+      <div >
+          <button class="btn btn-danger pull-right"  data-toggle="confirmation" title="delete car"
+          (click)="Delete(car)">x</button>
+      </div>
+  </div>
+  
+  
+  

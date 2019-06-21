@@ -35,6 +35,7 @@
     <Property Name="region" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="carRentalDetails" Relationship="Self.FK__carRental__carNu__534D60F1" FromRole="cars" ToRole="carRentalDetails" />
     <NavigationProperty Name="carType1" Relationship="Self.FK__cars__carType__4D94879B" FromRole="cars" ToRole="carTypes" />
+    <Property Name="mileage" Type="Int32" />
   </EntityType>
   <EntityType Name="carType">
     <Key>
@@ -64,6 +65,8 @@
     <Property Name="userPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="pathPhoto" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="carRentalDetails" Relationship="Self.FK__carRental__userI__52593CB8" FromRole="users" ToRole="carRentalDetails" />
+    <Property Name="isAdmin" Type="Boolean" />
+    <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <Association Name="FK__carRental__carNu__534D60F1">
     <End Role="cars" Type="Self.car" Multiplicity="0..1" />

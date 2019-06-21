@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="rentcarsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="rentcarsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="branch">
           <Key>
             <PropertyRef Name="id" />
@@ -36,6 +36,7 @@
           <Property Name="isAvailable" Type="bit" Nullable="false" />
           <Property Name="isUndamaged" Type="bit" Nullable="false" />
           <Property Name="region" Type="varchar" MaxLength="100" />
+          <Property Name="mileage" Type="int" />
         </EntityType>
         <EntityType Name="carTypes">
           <Key>
@@ -63,6 +64,8 @@
           <Property Name="email" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="userPassword" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="pathPhoto" Type="varchar" MaxLength="1000" />
+          <Property Name="isAdmin" Type="bit" />
+          <Property Name="image" Type="image" />
         </EntityType>
         <Association Name="FK__carRental__carNu__534D60F1">
           <End Role="cars" Type="Self.cars" Multiplicity="0..1" />
@@ -119,8 +122,7 @@
             <End Role="cars" EntitySet="cars" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="rentcarsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -159,6 +161,7 @@
           <Property Name="region" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="carRentalDetails" Relationship="Self.FK__carRental__carNu__534D60F1" FromRole="cars" ToRole="carRentalDetails" />
           <NavigationProperty Name="carType1" Relationship="Self.FK__cars__carType__4D94879B" FromRole="cars" ToRole="carTypes" />
+          <Property Name="mileage" Type="Int32" />
         </EntityType>
         <EntityType Name="carType">
           <Key>
@@ -188,6 +191,8 @@
           <Property Name="userPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="pathPhoto" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="carRentalDetails" Relationship="Self.FK__carRental__userI__52593CB8" FromRole="users" ToRole="carRentalDetails" />
+          <Property Name="isAdmin" Type="Boolean" />
+          <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <Association Name="FK__carRental__carNu__534D60F1">
           <End Role="cars" Type="Self.car" Multiplicity="0..1" />
@@ -276,6 +281,7 @@
           <EntitySetMapping Name="cars">
             <EntityTypeMapping TypeName="rentcarsModel.car">
               <MappingFragment StoreEntitySet="cars">
+                <ScalarProperty Name="mileage" ColumnName="mileage" />
                 <ScalarProperty Name="carNumber" ColumnName="carNumber" />
                 <ScalarProperty Name="carType" ColumnName="carType" />
                 <ScalarProperty Name="imagePath" ColumnName="imagePath" />
@@ -301,6 +307,8 @@
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="rentcarsModel.user">
               <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="firstName" ColumnName="firstName" />
                 <ScalarProperty Name="lastName" ColumnName="lastName" />

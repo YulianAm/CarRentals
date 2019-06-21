@@ -1,0 +1,15 @@
+.imageElement {
+width: 300px;
+height: 300px;
+
+}
+
+.row {
+    text-align: left;
+}
+
+.vertical-align {
+ display: flex;
+ align-items: center;
+
+}

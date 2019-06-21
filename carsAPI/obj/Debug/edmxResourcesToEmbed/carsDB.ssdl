@@ -31,6 +31,7 @@
     <Property Name="isAvailable" Type="bit" Nullable="false" />
     <Property Name="isUndamaged" Type="bit" Nullable="false" />
     <Property Name="region" Type="varchar" MaxLength="100" />
+    <Property Name="mileage" Type="int" />
   </EntityType>
   <EntityType Name="carTypes">
     <Key>
@@ -58,6 +59,8 @@
     <Property Name="email" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="userPassword" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="pathPhoto" Type="varchar" MaxLength="1000" />
+    <Property Name="isAdmin" Type="bit" />
+    <Property Name="image" Type="image" />
   </EntityType>
   <Association Name="FK__carRental__carNu__534D60F1">
     <End Role="cars" Type="Self.cars" Multiplicity="0..1" />
