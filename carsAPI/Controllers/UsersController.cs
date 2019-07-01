@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Web.Http;
 using carsAPI.Models;
 using Newtonsoft.Json;
@@ -13,44 +14,59 @@ namespace carsAPI.Controllers
     public class UsersController : ApiController
     {
         // GET: api/Users
+        [BasicAuthentication]
         [HttpGet]
         [Route("find")]
         public HttpResponseMessage find()
         {
+            string username = Thread.CurrentPrincipal.Identity.Name;
+
             using (var db = new rentcarsEntities())
             {
-
-                try
+                if (username == "admin")
                 {
-                   
-                    var userEntities = db.users.Select(p => new userEntity()
+                    try
                     {
-                        id = p.id,
-                        firstName = p.firstName,
-                        lastName = p.lastName,
-                        countryId = p.countryId,
-                        userName = p.userName,
-                        dateOfBirth = p.dateOfBirth ?? DateTime.Today,
-                        gender = p.gender,
-                        email = p.email,
-                        userPassword = p.userPassword,
-                        pathPhoto = p.pathPhoto,
-                        isAdmin = p.isAdmin?? false,
-                        image = p.image
 
-                    }).ToList();
-                    var response = new HttpResponseMessage(HttpStatusCode.OK);
-                    response.Content = new StringContent(JsonConvert.SerializeObject(userEntities));
-                    response.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("applicatoin/json");
-                    return response;
+                        var userEntities = db.users.Select(p => new userEntity()
+                        {
+                            id = p.id,
+                            firstName = p.firstName,
+                            lastName = p.lastName,
+                            countryId = p.countryId,
+                            userName = p.userName,
+                            dateOfBirth = p.dateOfBirth ?? DateTime.Today,
+                            gender = p.gender,
+                            email = p.email,
+                            userPassword = p.userPassword,
+                            pathPhoto = p.pathPhoto,
+                            isAdmin = p.isAdmin ?? false,
+                            image = p.image
 
+                        }).ToList();
+                        var response = new HttpResponseMessage(HttpStatusCode.OK);
+                        response.Content = new StringContent(JsonConvert.SerializeObject(userEntities));
+                        response.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("applicatoin/json");
+                        return response;
+
+                    }
+                    catch
+                    {
+
+                        return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                    }
                 }
-                catch
+
+                else
                 {
 
                     return new HttpResponseMessage(HttpStatusCode.BadRequest);
+
                 }
+
             }
+
+           
         }
 
         // GET: api/Users/5

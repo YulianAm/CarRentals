@@ -201,6 +201,8 @@
     <Compile Include="carType.cs">
       <DependentUpon>carsDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Classes\BasicAuthenticationAttribute.cs" />
+    <Compile Include="Classes\EmployeeSecurity.cs" />
     <Compile Include="Controllers\CarsController.cs" />
     <Compile Include="Controllers\CarTypesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

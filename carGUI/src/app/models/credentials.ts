@@ -4,7 +4,7 @@ export class credentials {
     constructor(
         public userName?: string,
         public userPassword?: string,
-        public role?: string
+        public userType?: UserTypeEnum
     ) {}
         
 

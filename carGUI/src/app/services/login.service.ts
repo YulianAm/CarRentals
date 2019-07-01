@@ -30,7 +30,7 @@ export class LoginService {
    return this.http.post<any>(this.Url+'UserLogin',model,{ headers: this.header});  
   }  
 
-  
+
   LoginRefactor(credetianls : credentials): Observable<User>  {
 
     return this.http.post<User>(this.Url+'login', credentials);
@@ -74,7 +74,8 @@ export class LoginService {
     return UserTypeEnum.Unknown;
   }*/
 
-  login(userData: User) {
+  login(userData: credentials, userType: number) {
+    userData.userType = userType;
     localStorage.setItem("userData", JSON.stringify(userData));
   }
 
