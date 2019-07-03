@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';  
-import {HttpClient} from '@angular/common/http';  
+import {HttpClient, HttpBackend} from '@angular/common/http';  
 import {HttpHeaders} from '@angular/common/http';  
 import { from, Observable } from 'rxjs';  
 import { User } from '../models/user';
@@ -17,16 +17,16 @@ export class LoginService {
   token : string;  
   header : any;  
 
-  constructor(private http : HttpClient) {   
-  
+  constructor(private http : HttpClient, handler: HttpBackend) {   
+    this.http = new HttpClient(handler);
     this.Url = baseUrl + 'Login/';  
   
-    const headerSettings: {[name: string]: string | string[]; } = {};  
+    const headerSettings: {   [name: string]: string | string[]; } = {};  
     this.header = new HttpHeaders(headerSettings);  
   }  
-  Login(model : any){  
+  Login(model : credentials){  
     //debugger;  
-       
+    
    return this.http.post<any>(this.Url+'UserLogin',model,{ headers: this.header});  
   }  
 
@@ -76,6 +76,8 @@ export class LoginService {
 
   login(userData: credentials, userType: number) {
     userData.userType = userType;
+    console.log("local stroage set");
+
     localStorage.setItem("userData", JSON.stringify(userData));
   }
 

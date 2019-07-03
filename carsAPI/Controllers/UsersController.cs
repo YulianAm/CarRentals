@@ -14,7 +14,7 @@ namespace carsAPI.Controllers
     public class UsersController : ApiController
     {
         // GET: api/Users
-        [BasicAuthentication]
+        //[BasicAuthentication]
         [HttpGet]
         [Route("find")]
         public HttpResponseMessage find()
@@ -23,8 +23,8 @@ namespace carsAPI.Controllers
 
             using (var db = new rentcarsEntities())
             {
-                if (username == "admin")
-                {
+                /*if (username == "admin")
+                {*/
                     try
                     {
 
@@ -55,14 +55,14 @@ namespace carsAPI.Controllers
 
                         return new HttpResponseMessage(HttpStatusCode.BadRequest);
                     }
-                }
+                //}
 
-                else
+                /*else
                 {
 
                     return new HttpResponseMessage(HttpStatusCode.BadRequest);
-
-                }
+                    
+                }*/
 
             }
 

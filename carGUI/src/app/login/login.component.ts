@@ -27,30 +27,31 @@ export class LoginComponent {
   //
 
   ngOnInit() {    
-    sessionStorage.removeItem('UserName');    
-    sessionStorage.clear();    
+    //sessionStorage.removeItem('UserName');    
+    //sessionStorage.clear();    
     this.nav.hide();
 
   }    
   
   login(){    
     
-
-    //debugger;    
+    console.log('success login mthod');
+        
 
 
 
   
 
 
-console.log(this.model);
+//console.log(this.model);
 
     this.LoginService.Login(this.model).subscribe(    
       data => {    
-        //debugger;    
+         
 
         if(data.Status=="success admin"  )    
         {
+          //debugger;
           this.userType = 1;
           this.LoginService.login(this.model, this.userType);
           //this.model.userType = "admin";
@@ -62,6 +63,7 @@ console.log(this.model);
         }    
         else if (data.Status=="success user") {      
         {
+          debugger;
           this.userType = 2;
           this.LoginService.login(this.model, this.userType);
           //this.model.userType = "user";
@@ -73,7 +75,8 @@ console.log(this.model);
         }    
 
         }
-        else{    
+        else{   
+          debugger; 
           this.userType = 3;
           this.LoginService.login(this.model, this.userType);
 
@@ -81,8 +84,10 @@ console.log(this.model);
           this.errorMessage = data.Message;    
           
         }    
-      },    
+      },  
+       
       error => {    
+        //debugger;
         this.errorMessage = error.message;    
       });    
 

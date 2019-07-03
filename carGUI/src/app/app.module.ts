@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
 import { CarComponent } from './cars/cars.component';
 import { CarsService } from './services/cars.service';
-import { HttpClientModule } from '@angular/common/http';
 import { UsersComponent } from './users/users.component'; 
 import { CreateUserComponent } from './users/create-user.component';
 import { FormsModule } from '@angular/forms';
@@ -18,7 +17,10 @@ import { LoginComponent } from './login/login.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AdminComponent } from './admin.component';
 import { HomeComponent } from './home/home.component';
-
+import { UserAuthentication } from './services/user.authontication';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { Interceptor } from './services/interceptor';
+import { ErrorInterceptor } from './services/error.interceptor';
 
 
 
@@ -47,7 +49,17 @@ import { HomeComponent } from './home/home.component';
     BsDatepickerModule.forRoot(),
     
   ],
-  providers: [ CarsService],
+  providers: [ CarsService, UserAuthentication, /*{
+    provide: HTTP_INTERCEPTORS,
+    useClass: Interceptor,
+    multi: true
+  }*/ ,
+  { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  
+  
+  
+  
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
