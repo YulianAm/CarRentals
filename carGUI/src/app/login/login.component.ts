@@ -63,7 +63,7 @@ export class LoginComponent {
         }    
         else if (data.Status=="success user") {      
         {
-          debugger;
+          //debugger;
           this.userType = 2;
           this.LoginService.login(this.model, this.userType);
           //this.model.userType = "user";

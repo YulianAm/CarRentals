@@ -11,7 +11,6 @@ export class User {
     gender: string;
     email: string;
     userPassword: string;
-    pathPhoto?: string;
     isAdmin: boolean;
     image?: any;
     userType?: UserTypeEnum;

@@ -49,11 +49,11 @@ import { ErrorInterceptor } from './services/error.interceptor';
     BsDatepickerModule.forRoot(),
     
   ],
-  providers: [ CarsService, UserAuthentication, /*{
+  providers: [ CarsService, UserAuthentication, {
     provide: HTTP_INTERCEPTORS,
     useClass: Interceptor,
     multi: true
-  }*/ ,
+  } ,
   { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   
   

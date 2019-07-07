@@ -18,7 +18,6 @@ namespace carsAPI
         public rentcarsEntities()
             : base("name=rentcarsEntities")
         {
-            base.Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

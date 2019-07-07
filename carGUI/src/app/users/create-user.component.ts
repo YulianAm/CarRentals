@@ -25,7 +25,6 @@ export class CreateUserComponent implements OnInit {
     gender: null,
     email: null,
     userPassword: null,
-    pathPhoto: null,
     isAdmin: null,
     image: null
   }
@@ -52,7 +51,7 @@ export class CreateUserComponent implements OnInit {
   Create(user: User): void {
 
 
-    this.user.pathPhoto = "";
+
 
       console.log('created user:' + user);
       this.usersService.CreateUser(this.user).subscribe();

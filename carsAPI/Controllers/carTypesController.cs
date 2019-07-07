@@ -5,12 +5,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Web.Http;
 
 namespace carsAPI.Controllers
 {
     public class CarTypesController : ApiController
     {
+        string username = Thread.CurrentPrincipal.Identity.Name;
+
 
         [HttpGet]
         [Route("find")]
@@ -60,26 +63,34 @@ namespace carsAPI.Controllers
         {
             using (var db = new rentcarsEntities())
             {
-                try
+                if (username == "admin")
                 {
-                    var response = new HttpResponseMessage(HttpStatusCode.OK);
-                    var carType = new carType()
+                    try
                     {
-                        id = typeEntity.id,
-                        manufacturer = typeEntity.manufacturer,
-                        model = typeEntity.model,
-                        dailyCost = typeEntity.dailyCost,
-                        dailyPenalty = typeEntity.dailyPenalty,
-                        manufacturingYear = typeEntity.manufacturingYear,
-                        gearType = typeEntity.gearType
-                    };
+                        var response = new HttpResponseMessage(HttpStatusCode.OK);
+                        var carType = new carType()
+                        {
+                            id = typeEntity.id,
+                            manufacturer = typeEntity.manufacturer,
+                            model = typeEntity.model,
+                            dailyCost = typeEntity.dailyCost,
+                            dailyPenalty = typeEntity.dailyPenalty,
+                            manufacturingYear = typeEntity.manufacturingYear,
+                            gearType = typeEntity.gearType
+                        };
 
-                    db.carTypes.Add(carType);
-                    db.SaveChanges();
-                    return response;
+                        db.carTypes.Add(carType);
+                        db.SaveChanges();
+                        return response;
 
+                    }
+                    catch
+                    {
+
+                        return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                    }
                 }
-                catch
+                else
                 {
 
                     return new HttpResponseMessage(HttpStatusCode.BadRequest);
@@ -93,25 +104,33 @@ namespace carsAPI.Controllers
         {
             using (var db = new rentcarsEntities())
             {
-                try
+                if (username == "admin")
                 {
-                    var response = new HttpResponseMessage(HttpStatusCode.OK);
-                    var currentCarType = db.carTypes.SingleOrDefault(p => p.id == typeEntity.id);
+                    try
+                    {
+                        var response = new HttpResponseMessage(HttpStatusCode.OK);
+                        var currentCarType = db.carTypes.SingleOrDefault(p => p.id == typeEntity.id);
 
-                    currentCarType.id = typeEntity.id;
-                    currentCarType.manufacturer = typeEntity.manufacturer;
-                    currentCarType.model = typeEntity.model;
-                    currentCarType.dailyCost = typeEntity.dailyCost;
-                    currentCarType.dailyPenalty = typeEntity.dailyPenalty;
-                    currentCarType.manufacturingYear = typeEntity.manufacturingYear;
-                    currentCarType.gearType = typeEntity.gearType;
-                    db.SaveChanges();
-                    return response;
+                        currentCarType.id = typeEntity.id;
+                        currentCarType.manufacturer = typeEntity.manufacturer;
+                        currentCarType.model = typeEntity.model;
+                        currentCarType.dailyCost = typeEntity.dailyCost;
+                        currentCarType.dailyPenalty = typeEntity.dailyPenalty;
+                        currentCarType.manufacturingYear = typeEntity.manufacturingYear;
+                        currentCarType.gearType = typeEntity.gearType;
+                        db.SaveChanges();
+                        return response;
+                    }
+                    catch
+                    {
+
+                        return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                    }
                 }
-                catch
+                else
                 {
-
                     return new HttpResponseMessage(HttpStatusCode.BadRequest);
+
                 }
             }
         }
@@ -122,24 +141,34 @@ namespace carsAPI.Controllers
         {
             using (var db = new rentcarsEntities())
             {
-
-                try
+                if (username == "admin")
                 {
 
-                    var response = new HttpResponseMessage(HttpStatusCode.OK);
+                    try
+                    {
 
-                    var carType = db.carTypes.SingleOrDefault(p => p.id == carTypeId);
+                        var response = new HttpResponseMessage(HttpStatusCode.OK);
 
-                    db.carTypes.Remove(carType);
-                    db.SaveChanges();
-                    return response;
+                        var carType = db.carTypes.SingleOrDefault(p => p.id == carTypeId);
 
+                        db.carTypes.Remove(carType);
+                        db.SaveChanges();
+                        return response;
+
+                    }
+                    catch
+                    {
+
+                        return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                    }
                 }
-                catch
+                else
                 {
 
                     return new HttpResponseMessage(HttpStatusCode.BadRequest);
                 }
+
+            
             }
         }
     }

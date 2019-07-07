@@ -36,8 +36,8 @@ export class UserAuthentication {
     return UserTypeEnum.Unknown;
   }
 
-  login(userData: credentials) {
-    localStorage.setItem("user", JSON.stringify(userData));
+  login(user: credentials) {
+    localStorage.setItem("user", JSON.stringify(user));
   }
 
   logout() {

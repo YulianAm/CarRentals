@@ -27,10 +27,10 @@
     <EntitySetMapping Name="cars">
       <EntityTypeMapping TypeName="rentcarsModel.car">
         <MappingFragment StoreEntitySet="cars">
+          <ScalarProperty Name="image" ColumnName="image" />
           <ScalarProperty Name="mileage" ColumnName="mileage" />
           <ScalarProperty Name="carNumber" ColumnName="carNumber" />
           <ScalarProperty Name="carType" ColumnName="carType" />
-          <ScalarProperty Name="imagePath" ColumnName="imagePath" />
           <ScalarProperty Name="isAvailable" ColumnName="isAvailable" />
           <ScalarProperty Name="isUndamaged" ColumnName="isUndamaged" />
           <ScalarProperty Name="region" ColumnName="region" />
@@ -64,7 +64,6 @@
           <ScalarProperty Name="gender" ColumnName="gender" />
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="userPassword" ColumnName="userPassword" />
-          <ScalarProperty Name="pathPhoto" ColumnName="pathPhoto" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

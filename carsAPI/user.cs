@@ -29,7 +29,6 @@ namespace carsAPI
         public string gender { get; set; }
         public string email { get; set; }
         public string userPassword { get; set; }
-        public string pathPhoto { get; set; }
         public Nullable<bool> isAdmin { get; set; }
         public byte[] image { get; set; }
     

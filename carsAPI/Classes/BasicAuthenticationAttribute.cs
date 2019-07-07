@@ -16,6 +16,7 @@ namespace carsAPI.Controllers
 {
     public class BasicAuthenticationAttribute : AuthorizationFilterAttribute
     {
+        public static bool GlobalIsAdmin;
 
         public override void OnAuthorization(HttpActionContext actionContext)
         {
@@ -40,7 +41,12 @@ namespace carsAPI.Controllers
 
                 if (EmployeeSecurity.Login(username, password) && EmployeeSecurity.isAdmin(username) )
                 {
-                    Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity("admin"), null);
+                    // Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity("admin"), null);
+                    //Thread.CurrentPrincipal  = new GenericPrincipal(new GenericIdentity("admin"), null);
+                    GlobalIsAdmin = true;
+
+
+
                 }           
                 else
                 {

@@ -22,11 +22,11 @@ namespace carsAPI
     
         public string carNumber { get; set; }
         public Nullable<int> carType { get; set; }
-        public string imagePath { get; set; }
         public bool isAvailable { get; set; }
         public bool isUndamaged { get; set; }
         public string region { get; set; }
         public Nullable<int> mileage { get; set; }
+        public byte[] image { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<carRentalDetail> carRentalDetails { get; set; }

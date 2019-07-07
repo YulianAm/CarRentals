@@ -32,11 +32,11 @@
           </Key>
           <Property Name="carNumber" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="carType" Type="int" />
-          <Property Name="imagePath" Type="varchar" MaxLength="1000" />
           <Property Name="isAvailable" Type="bit" Nullable="false" />
           <Property Name="isUndamaged" Type="bit" Nullable="false" />
           <Property Name="region" Type="varchar" MaxLength="100" />
           <Property Name="mileage" Type="int" />
+          <Property Name="image" Type="image" />
         </EntityType>
         <EntityType Name="carTypes">
           <Key>
@@ -63,7 +63,6 @@
           <Property Name="gender" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="userPassword" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="pathPhoto" Type="varchar" MaxLength="1000" />
           <Property Name="isAdmin" Type="bit" />
           <Property Name="image" Type="image" />
         </EntityType>
@@ -155,13 +154,13 @@
           </Key>
           <Property Name="carNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="carType" Type="Int32" />
-          <Property Name="imagePath" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="isAvailable" Type="Boolean" Nullable="false" />
           <Property Name="isUndamaged" Type="Boolean" Nullable="false" />
           <Property Name="region" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="carRentalDetails" Relationship="Self.FK__carRental__carNu__534D60F1" FromRole="cars" ToRole="carRentalDetails" />
           <NavigationProperty Name="carType1" Relationship="Self.FK__cars__carType__4D94879B" FromRole="cars" ToRole="carTypes" />
           <Property Name="mileage" Type="Int32" />
+          <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="carType">
           <Key>
@@ -189,7 +188,6 @@
           <Property Name="gender" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="userPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="pathPhoto" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="carRentalDetails" Relationship="Self.FK__carRental__userI__52593CB8" FromRole="users" ToRole="carRentalDetails" />
           <Property Name="isAdmin" Type="Boolean" />
           <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
@@ -281,10 +279,10 @@
           <EntitySetMapping Name="cars">
             <EntityTypeMapping TypeName="rentcarsModel.car">
               <MappingFragment StoreEntitySet="cars">
+                <ScalarProperty Name="image" ColumnName="image" />
                 <ScalarProperty Name="mileage" ColumnName="mileage" />
                 <ScalarProperty Name="carNumber" ColumnName="carNumber" />
                 <ScalarProperty Name="carType" ColumnName="carType" />
-                <ScalarProperty Name="imagePath" ColumnName="imagePath" />
                 <ScalarProperty Name="isAvailable" ColumnName="isAvailable" />
                 <ScalarProperty Name="isUndamaged" ColumnName="isUndamaged" />
                 <ScalarProperty Name="region" ColumnName="region" />
@@ -318,7 +316,6 @@
                 <ScalarProperty Name="gender" ColumnName="gender" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="userPassword" ColumnName="userPassword" />
-                <ScalarProperty Name="pathPhoto" ColumnName="pathPhoto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

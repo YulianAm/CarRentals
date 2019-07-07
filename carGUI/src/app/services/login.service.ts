@@ -78,7 +78,7 @@ export class LoginService {
     userData.userType = userType;
     console.log("local stroage set");
 
-    localStorage.setItem("userData", JSON.stringify(userData));
+    localStorage.setItem("user", JSON.stringify(userData));
   }
 
   logout() {

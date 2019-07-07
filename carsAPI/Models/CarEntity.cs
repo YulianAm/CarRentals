@@ -14,6 +14,7 @@ namespace carsAPI.Models
         public Boolean isUndamaged { get; set; }
         public string region { get; set; }
         public int mileage { get; set; }
+        public Byte[] image { get; set; }
 
     }
 }

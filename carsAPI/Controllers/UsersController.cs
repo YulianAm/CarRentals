@@ -7,24 +7,28 @@ using System.Threading;
 using System.Web.Http;
 using carsAPI.Models;
 using Newtonsoft.Json;
+using carsAPI.Controllers;
 
 namespace carsAPI.Controllers
 {
+    [BasicAuthentication]
     [RoutePrefix("api/users")]
     public class UsersController : ApiController
     {
+
+        //public static string ThreadUser = Thread.CurrentPrincipal.Identity.Name;
         // GET: api/Users
-        //[BasicAuthentication]
+
         [HttpGet]
         [Route("find")]
         public HttpResponseMessage find()
         {
-            string username = Thread.CurrentPrincipal.Identity.Name;
+           
 
             using (var db = new rentcarsEntities())
             {
-                /*if (username == "admin")
-                {*/
+                if (BasicAuthenticationAttribute.GlobalIsAdmin)
+                {
                     try
                     {
 
@@ -39,7 +43,6 @@ namespace carsAPI.Controllers
                             gender = p.gender,
                             email = p.email,
                             userPassword = p.userPassword,
-                            pathPhoto = p.pathPhoto,
                             isAdmin = p.isAdmin ?? false,
                             image = p.image
 
@@ -55,18 +58,18 @@ namespace carsAPI.Controllers
 
                         return new HttpResponseMessage(HttpStatusCode.BadRequest);
                     }
-                //}
+                }
 
-                /*else
+               else
                 {
 
                     return new HttpResponseMessage(HttpStatusCode.BadRequest);
-                    
-                }*/
+
+                }
 
             }
 
-           
+
         }
 
         // GET: api/Users/5
@@ -81,41 +84,53 @@ namespace carsAPI.Controllers
         public HttpResponseMessage create(userEntity userEntity)
         {
             using (var db = new rentcarsEntities())
+
             {
-                try
+                if (BasicAuthenticationAttribute.GlobalIsAdmin)
                 {
-                    DateTime date1 = new DateTime(2015, 12, 25);
-                    var response = new HttpResponseMessage(HttpStatusCode.OK);
-                    
-                    var user = new user()
+                    try
                     {
-                        id = userEntity.id,
-                        firstName = userEntity.firstName,
-                        lastName = userEntity.lastName,
-                        countryId = userEntity.countryId,
-                        userName = userEntity.userName,
-                        dateOfBirth = userEntity.dateOfBirth ,
-                        gender = userEntity.gender,
-                        email = userEntity.email,
-                        userPassword = userEntity.userPassword,
-                        pathPhoto = userEntity.pathPhoto,
-                        isAdmin = userEntity.isAdmin
+                        DateTime date1 = new DateTime(2015, 12, 25);
+                        var response = new HttpResponseMessage(HttpStatusCode.OK);
+
+                        var user = new user()
+                        {
+                            id = userEntity.id,
+                            firstName = userEntity.firstName,
+                            lastName = userEntity.lastName,
+                            countryId = userEntity.countryId,
+                            userName = userEntity.userName,
+                            dateOfBirth = userEntity.dateOfBirth,
+                            gender = userEntity.gender,
+                            email = userEntity.email,
+                            userPassword = userEntity.userPassword,
+                            isAdmin = userEntity.isAdmin
 
 
-                    };
+                        };
 
-                    db.users.Add(user);
-                    db.SaveChanges();
-                    return response;
+                        db.users.Add(user);
+                        db.SaveChanges();
+                        return response;
 
+                    }
+                    catch (Exception)
+                    {
+
+                        return new HttpResponseMessage(HttpStatusCode.BadRequest);
+
+                    }
                 }
-                catch(Exception)
+
+                else
                 {
 
-                    return new HttpResponseMessage(HttpStatusCode.BadRequest );
+                    return new HttpResponseMessage(HttpStatusCode.BadRequest);
 
                 }
+
             }
+
         }
 
         // PUT: api/Users/5
@@ -125,24 +140,33 @@ namespace carsAPI.Controllers
         {
             using (var db = new rentcarsEntities())
             {
-                try
+                if (BasicAuthenticationAttribute.GlobalIsAdmin)
                 {
-                    var response = new HttpResponseMessage(HttpStatusCode.OK);
-                    var currentUser = db.users.SingleOrDefault(p => p.id == user.id);
-                    currentUser.id = user.id;
-                    currentUser.firstName = user.firstName;
-                    currentUser.lastName = user.lastName;
-                    currentUser.countryId = user.countryId;
-                    currentUser.userName = user.userName;
-                    currentUser.dateOfBirth = user.dateOfBirth;
-                    currentUser.gender = user.gender;
-                    currentUser.email = user.email;
-                    currentUser.userPassword = user.userPassword;
-                    currentUser.pathPhoto = user.pathPhoto;
-                    db.SaveChanges();
-                    return response;
+                    try
+                    {
+                        var response = new HttpResponseMessage(HttpStatusCode.OK);
+                        var currentUser = db.users.SingleOrDefault(p => p.id == user.id);
+                        currentUser.id = user.id;
+                        currentUser.firstName = user.firstName;
+                        currentUser.lastName = user.lastName;
+                        currentUser.countryId = user.countryId;
+                        currentUser.userName = user.userName;
+                        currentUser.dateOfBirth = user.dateOfBirth;
+                        currentUser.gender = user.gender;
+                        currentUser.email = user.email;
+                        currentUser.userPassword = user.userPassword;
+                        db.SaveChanges();
+                        return response;
+                    }
+                    catch
+                    {
+
+                        return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                    }
                 }
-                catch
+
+
+            else
                 {
 
                     return new HttpResponseMessage(HttpStatusCode.BadRequest);
@@ -157,19 +181,27 @@ namespace carsAPI.Controllers
         {
             using (var db = new rentcarsEntities())
             {
-
-                try
+                if (BasicAuthenticationAttribute.GlobalIsAdmin)
                 {
 
-                    var response = new HttpResponseMessage(HttpStatusCode.OK);
+                    try
+                    {
 
-                    var user = db.users.SingleOrDefault(p => p.id == userId);
-                    db.users.Remove(user);
-                    db.SaveChanges();
-                    return response;
+                        var response = new HttpResponseMessage(HttpStatusCode.OK);
 
+                        var user = db.users.SingleOrDefault(p => p.id == userId);
+                        db.users.Remove(user);
+                        db.SaveChanges();
+                        return response;
+
+                    }
+                    catch
+                    {
+
+                        return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                    }
                 }
-                catch
+                else
                 {
 
                     return new HttpResponseMessage(HttpStatusCode.BadRequest);

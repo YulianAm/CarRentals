@@ -5,41 +5,55 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Web.Http;
 
 namespace carsAPI.Controllers
 {
+    
+
+
     [RoutePrefix("api/RentalDetails")]
     public class RentalDetailsController : ApiController
     {
+        string username = Thread.CurrentPrincipal.Identity.Name;
+
+        
         [HttpGet]
         [Route("find")]
         public HttpResponseMessage GetAll()
         {
             using (var db = new rentcarsEntities())
             {
-
-                try
+                if (username == "admin")
                 {
-                    var rentalDetailsEntity = db.carRentalDetails.Select(p => new rentalDetailEntity()
+
+                    try
+                    {
+                        var rentalDetailsEntity = db.carRentalDetails.Select(p => new rentalDetailEntity()
+                        {
+
+                            id = p.id,
+                            startDate = p.startDate,
+                            returnDate = p.returnDate,
+                            actualReturnDate = p.actualReturnDate,
+                            userId = p.userId ?? 1,
+                            carNumber = p.carNumber,
+                        }).ToList();
+                        var response = new HttpResponseMessage(HttpStatusCode.OK);
+                        response.Content = new StringContent(JsonConvert.SerializeObject(rentalDetailsEntity));
+                        response.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("applicatoin/json");
+                        return response;
+
+                    }
+                    catch
                     {
 
-                        id = p.id,
-                        startDate = p.startDate ,
-                        returnDate = p.returnDate,
-                        actualReturnDate = p.actualReturnDate,
-                        userId = p.userId?? 1,
-                        carNumber = p.carNumber,
-                    }).ToList();
-                    var response = new HttpResponseMessage(HttpStatusCode.OK);
-                    response.Content = new StringContent(JsonConvert.SerializeObject(rentalDetailsEntity));
-                    response.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("applicatoin/json");
-                    return response;
-
+                        return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                    }
                 }
-                catch
+                else
                 {
-
                     return new HttpResponseMessage(HttpStatusCode.BadRequest);
                 }
             }
@@ -58,27 +72,34 @@ namespace carsAPI.Controllers
         {
             using (var db = new rentcarsEntities())
             {
-                try
+                if (username == "admin")
                 {
-                    var response = new HttpResponseMessage(HttpStatusCode.OK);
-                    var rentalDetails = new carRentalDetail()
+                    try
                     {
-                        id = rentalDetailsEntity.id,
-                        startDate = rentalDetailsEntity.startDate,
-                        returnDate = rentalDetailsEntity.returnDate,
-                        actualReturnDate = rentalDetailsEntity.actualReturnDate,
-                        userId = rentalDetailsEntity.userId,
-                        carNumber = rentalDetailsEntity.carNumber,
-                    };
+                        var response = new HttpResponseMessage(HttpStatusCode.OK);
+                        var rentalDetails = new carRentalDetail()
+                        {
+                            id = rentalDetailsEntity.id,
+                            startDate = rentalDetailsEntity.startDate,
+                            returnDate = rentalDetailsEntity.returnDate,
+                            actualReturnDate = rentalDetailsEntity.actualReturnDate,
+                            userId = rentalDetailsEntity.userId,
+                            carNumber = rentalDetailsEntity.carNumber,
+                        };
 
-                    db.carRentalDetails.Add(rentalDetails);
-                    db.SaveChanges();
-                    return response;
+                        db.carRentalDetails.Add(rentalDetails);
+                        db.SaveChanges();
+                        return response;
 
+                    }
+                    catch
+                    {
+
+                        return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                    }
                 }
-                catch
+                else
                 {
-
                     return new HttpResponseMessage(HttpStatusCode.BadRequest);
                 }
             }
@@ -90,21 +111,29 @@ namespace carsAPI.Controllers
         {
             using (var db = new rentcarsEntities())
             {
-                try
+                if (username == "admin")
                 {
-                    var response = new HttpResponseMessage(HttpStatusCode.OK);
-                    var currentRental = db.carRentalDetails.SingleOrDefault(p => p.carNumber == rentalDetails.carNumber);
+                    try
+                    {
+                        var response = new HttpResponseMessage(HttpStatusCode.OK);
+                        var currentRental = db.carRentalDetails.SingleOrDefault(p => p.carNumber == rentalDetails.carNumber);
 
-                    currentRental.id = rentalDetails.id;
-                    currentRental.startDate = rentalDetails.startDate;
-                    currentRental.returnDate = rentalDetails.returnDate;
-                    currentRental.actualReturnDate = rentalDetails.actualReturnDate;
-                    currentRental.userId = rentalDetails.userId;
-                    currentRental.carNumber = rentalDetails.carNumber;
-                    db.SaveChanges();
-                    return response;
+                        currentRental.id = rentalDetails.id;
+                        currentRental.startDate = rentalDetails.startDate;
+                        currentRental.returnDate = rentalDetails.returnDate;
+                        currentRental.actualReturnDate = rentalDetails.actualReturnDate;
+                        currentRental.userId = rentalDetails.userId;
+                        currentRental.carNumber = rentalDetails.carNumber;
+                        db.SaveChanges();
+                        return response;
+                    }
+                    catch
+                    {
+
+                        return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                    }
                 }
-                catch
+                else
                 {
 
                     return new HttpResponseMessage(HttpStatusCode.BadRequest);
@@ -118,19 +147,27 @@ namespace carsAPI.Controllers
         {
             using (var db = new rentcarsEntities())
             {
-
-                try
+                if (username == "admin")
                 {
 
-                    var response = new HttpResponseMessage(HttpStatusCode.OK);
+                    try
+                    {
 
-                    var rentalDetail = db.carRentalDetails.SingleOrDefault(p => p.id == id);
-                    db.carRentalDetails.Remove(rentalDetail);
-                    db.SaveChanges();
-                    return response;
+                        var response = new HttpResponseMessage(HttpStatusCode.OK);
 
+                        var rentalDetail = db.carRentalDetails.SingleOrDefault(p => p.id == id);
+                        db.carRentalDetails.Remove(rentalDetail);
+                        db.SaveChanges();
+                        return response;
+
+                    }
+                    catch
+                    {
+
+                        return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                    }
                 }
-                catch
+                else
                 {
 
                     return new HttpResponseMessage(HttpStatusCode.BadRequest);
