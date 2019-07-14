@@ -14,7 +14,7 @@ import { UserTypeEnum } from '../models/userTypeEnum';
   styleUrls: ['./login.component.css']    
 })    
 export class LoginComponent {    
-  model : credentials = new credentials (); 
+  model : credentials = new credentials() ;
   //public credentials =  new credentials();    
     
   errorMessage:string;   
@@ -22,7 +22,7 @@ export class LoginComponent {
 
   constructor(private router:Router,private LoginService:LoginService,  
     public nav: NavService, private usersService: UsersService 
-    ) { }    
+    ) {  }    
     
   //
 
@@ -30,6 +30,7 @@ export class LoginComponent {
     //sessionStorage.removeItem('UserName');    
     //sessionStorage.clear();    
     this.nav.hide();
+    this.model.userName ="", this.model.userPassword="", this.model.userType=3
 
   }    
   
@@ -76,7 +77,7 @@ export class LoginComponent {
 
         }
         else{   
-          debugger; 
+          //debugger; 
           this.userType = 3;
           this.LoginService.login(this.model, this.userType);
 
@@ -95,5 +96,9 @@ export class LoginComponent {
       
   };    
   
+  clickNotRgistered() {
+    this.LoginService.login(this.model, 3);
+          
+  }
 
  }     

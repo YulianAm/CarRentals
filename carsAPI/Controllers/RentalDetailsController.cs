@@ -25,7 +25,7 @@ namespace carsAPI.Controllers
         {
             using (var db = new rentcarsEntities())
             {
-                if (username == "admin")
+                if (BasicAuthenticationAttribute.GlobalIsAdmin)
                 {
 
                     try
@@ -72,7 +72,7 @@ namespace carsAPI.Controllers
         {
             using (var db = new rentcarsEntities())
             {
-                if (username == "admin")
+                if (BasicAuthenticationAttribute.GlobalIsAdmin)
                 {
                     try
                     {
@@ -111,7 +111,7 @@ namespace carsAPI.Controllers
         {
             using (var db = new rentcarsEntities())
             {
-                if (username == "admin")
+                if (BasicAuthenticationAttribute.GlobalIsAdmin)
                 {
                     try
                     {
@@ -147,7 +147,7 @@ namespace carsAPI.Controllers
         {
             using (var db = new rentcarsEntities())
             {
-                if (username == "admin")
+                if (BasicAuthenticationAttribute.GlobalIsAdmin)
                 {
 
                     try

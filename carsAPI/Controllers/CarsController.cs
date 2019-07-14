@@ -12,11 +12,11 @@ using carsAPI.Controllers;
 
 namespace carsAPI.Controllers
 {
-    [BasicAuthentication]
+    
     [RoutePrefix("api/cars")]
     public class CarsController : ApiController
     {
-        public static string ThreadUser = Thread.CurrentPrincipal.Identity.Name;
+        
         
         // GET: api/cars
         [HttpGet]
@@ -63,13 +63,14 @@ namespace carsAPI.Controllers
         }
 
         // POST: api/Cars
+        [BasicAuthentication]
         [HttpPost]
         [Route("create")]
         public HttpResponseMessage create(carEntity carEntity)
         {
             using (var db = new rentcarsEntities())
             {
-                if ( ThreadUser == "admin")
+                if (BasicAuthenticationAttribute.GlobalIsAdmin)
                 {
                     try
                     {
@@ -105,13 +106,14 @@ namespace carsAPI.Controllers
         }
 
         // PUT: api/Cars/5
+        [BasicAuthentication]
         [HttpPut]
         [Route("update")]
         public HttpResponseMessage update(carEntity car)
         {
             using (var db = new rentcarsEntities())
             {
-                if (ThreadUser == "admin")
+                if (BasicAuthenticationAttribute.GlobalIsAdmin)
                 {
                     try
                     {
@@ -140,13 +142,14 @@ namespace carsAPI.Controllers
         }
 
         // DELETE: api/Cars/5
+        [BasicAuthentication]
         [HttpDelete]
         [Route("delete/{carNumber}")]
         public HttpResponseMessage Delete(string carNumber)
         {
             using (var db = new rentcarsEntities())
             {
-                if (ThreadUser == "admin")
+                if (BasicAuthenticationAttribute.GlobalIsAdmin)
                 {
 
                     try

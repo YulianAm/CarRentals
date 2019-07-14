@@ -1,86 +1,86 @@
 <h1>
-  WELCOME TO CAR RENTAL SERVICE!!!!
+  Car Rental Service
 </h1>
 
 
 
-
-
-
-<div class = "panel panel-primary" *ngFor=" let car of cars ; index as i">
-  <div class="panel-heading">
-    <h3 class="panel-title"># {{ i+1 }} |   {{car.carNumber}}  {{car.region}} |  </h3>
-  </div>
-  <div class="panel-body">
-  <div class="col-xs-10">
-    <div class="row vertical-align" >
-      <div  class="col-xs-4">
-        <img height="150" width="220" src=" {{ car.imagePath }} "  >
-      </div>
   
-      <div class="col-xs-8">
-       
   
-          <div class="row">
-              <div class="col-xs-4">
-                  car number
-              </div>
-              <div class="col-xs-4">
-                   {{ car.carNumber }}
-              </div>
-          </div>
-          
-          <div class="row">
-              <div class="col-xs-4">
-                  car type 
-              </div>
-              <div class="col-xs-4">
-                     {{ car.carType }}
-              </div>
-          </div>
-          <div class="row">
-              <div class="col-xs-4">
-                  available? 
-              </div>
-              <div class="col-xs-4">
-                    {{ car.isAvailable }}
-              </div>
-          </div>
-          
-          <div class="row">
-              <div class="col-xs-4">
-                  is undamaged?
-              </div>
-              <div class="col-xs-4">
-                    {{ car.isUndamaged  }}
-              </div>
-          </div>
-          <div class="row">
-              <div class="col-xs-4">
-                  region
-              </div>
-              <div class="col-xs-4">
-                    {{ car.region }}
-              </div>
-          </div>
-          <div class="row">
-              <div class="col-xs-4">
-                  mileage
-              </div>
-              <div class="col-xs-4">
-                    {{ car.mileage }}
-              </div>
-          </div>
-          
-         
-  
+
+<div id="container" class="cols">
+    
+        <div class="card" style="width: 18rem;" *ngFor=" let car of cars">
             
-      </div>
-      <div >
-          <button class="btn btn-danger pull-right"  data-toggle="confirmation" title="delete car"
-          (click)="Delete(car)">x</button>
-      </div>
-  </div>
-  
-  
-  
+            <img height="150" width="220" class="card-img-top" src="data:image/png;base64,{{car.image}}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{car.carNumber}}</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>     
+</div>
+
+
+///////////////////////
+
+
+
+<!-- Team -->
+<section id="team" class="pb-5">
+    <div class="container">
+        <h5 class="section-title h1">Cur Cars</h5>
+        <div class="row">
+            <!-- Team member -->
+            <div class="col-xs-12 col-sm-6 col-md-4" *ngFor=" let car of cars">
+                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                    <div class="mainflip">
+                        <div class="frontside">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <p><img class=" img-fluid" src="data:image/png;base64,{{car.image}}" alt="card image"></p>
+                                    <h4 class="card-title">Sunlimetech</h4>
+                                    <p class="card-text">This is basic card with image on top, title, description and button.</p>
+                                    <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="backside">
+                            <div class="card">
+                                <div class="card-body text-center mt-4">
+                                    <h4 class="card-title"> car type</h4>
+                                    <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                <i class="fa fa-facebook"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                <i class="fa fa-twitter"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                <i class="fa fa-skype"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                <i class="fa fa-google"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ./Team member -->
+            
+
+        </div>
+    </div>
+</section>
+<!-- Team -->

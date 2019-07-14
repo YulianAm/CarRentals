@@ -50,7 +50,13 @@ namespace carsAPI.Controllers
                         var response = new HttpResponseMessage(HttpStatusCode.OK);
                         response.Content = new StringContent(JsonConvert.SerializeObject(userEntities));
                         response.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("applicatoin/json");
+
+
+
+                        //var x = db.users.AsQueryable(); return x.ToList();
                         return response;
+
+
 
                     }
                     catch
@@ -64,6 +70,7 @@ namespace carsAPI.Controllers
                 {
 
                     return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                   
 
                 }
 
