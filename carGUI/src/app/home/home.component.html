@@ -1,86 +1,77 @@
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <h1>
-  Car Rental Service
+    Car Rental Service
 </h1>
 
+<div class="search-hero">
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+        placeholder="&#61442;  Start searching for a car by number or name ">
+</div>
+<br>
+<br>
 
 
-  
-  
 
-<div id="container" class="cols">
-    
-        <div class="card" style="width: 18rem;" *ngFor=" let car of cars">
-            
-            <img height="150" width="220" class="card-img-top" src="data:image/png;base64,{{car.image}}" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">{{car.carNumber}}</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>     
+
+<div *ngFor=" let car of cars | filter:searchText" id="container" class="row col-md-3">
+
+    <div class="card " style="width: 18rem;">
+
+        <img height="150" width="220" class="card-img-top" src="data:image/png;base64,{{car.image}}"
+            alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Car Number: {{car.carNumber}}</h5>
+            <h5 class="card-title">Car Region: {{car.region}}</h5>
+            <h5 class="card-title">Car Mileage: {{car.mileage}}</h5>
+            <h5 class="card-title">Car Manufacturer:   </h5>
+            <p class="card-text">sample text</p>
+            <a href="#" class="btn btn-primary"> Rent </a>
+        </div>
+    </div>
+    <br>
+</div>
+
+<div *ngFor=" let c of carTypes" >
+<div class="card " style="width: 18rem;">
+
+<h5> {{c.Manufacturer}}</h5>
+
+</div>
 </div>
 
 
-///////////////////////
+<!--
+<div class="container"  >
+    <br>
+	<div  class="row" id="ads">
 
-
-
-<!-- Team -->
-<section id="team" class="pb-5">
-    <div class="container">
-        <h5 class="section-title h1">Cur Cars</h5>
-        <div class="row">
-            <!-- Team member -->
-            <div class="col-xs-12 col-sm-6 col-md-4" *ngFor=" let car of cars">
-                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-                    <div class="mainflip">
-                        <div class="frontside">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <p><img class=" img-fluid" src="data:image/png;base64,{{car.image}}" alt="card image"></p>
-                                    <h4 class="card-title">Sunlimetech</h4>
-                                    <p class="card-text">This is basic card with image on top, title, description and button.</p>
-                                    <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="backside">
-                            <div class="card">
-                                <div class="card-body text-center mt-4">
-                                    <h4 class="card-title"> car type</h4>
-                                    <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-facebook"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-twitter"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-skype"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-google"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- ./Team member -->
             
-
+<div    *ngFor=" let car of cars" class="col-md-5">
+    <div  class="card rounded pad-div">
+        <div class="card-image">
+            <span class="card-notify-badge">Low KMS</span>
+            <span class="card-notify-year">2018</span>
+            <img class="img-fluid" src="data:image/png;base64,{{car.image}}" height="250" width="350" alt="Alternate Text" />
+        </div>
+        <div class="card-image-overlay m-auto">
+            <span class="card-detail-badge"> car.</span>
+            <span class="card-detail-badge">$28,000.00</span>
+            <span class="card-detail-badge">{{car.mileage}} Kms</span>
+        </div>
+        <div class="card-body text-center">
+            <div class="ad-title m-auto">
+                <h5>Honda Accord LX</h5>
+            </div>
+            <a class="ad-btn" href="#">View</a>
         </div>
     </div>
-</section>
-<!-- Team -->
+    <div style="height: 50px" ></div>
+    
+</div>
+
+
+
+
+</div>
+</div> -->

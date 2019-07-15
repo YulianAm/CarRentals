@@ -23,6 +23,9 @@ import { Interceptor } from './services/interceptor';
 import { ErrorInterceptor } from './services/error.interceptor';
 
 
+// search module
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 
 @NgModule({
   declarations: [
@@ -47,6 +50,8 @@ import { ErrorInterceptor } from './services/error.interceptor';
     //RouterModule.forRoot(appRoutes),
     FormsModule,
     BsDatepickerModule.forRoot(),
+    Ng2SearchPipeModule,
+    
     
   ],
   providers: [ CarsService, UserAuthentication, {
