@@ -5,6 +5,8 @@ import { NavService } from '../services/nav.service';
 
 import { CarTypesService } from '../services/car-types.service';
 import { CarType } from '../models/carType';
+import { Observable } from 'rxjs';
+import { CarWithCarTypeDetails } from '../models/carWithTypeDetails';
 
 @Component({
   selector: 'app-home',
@@ -14,8 +16,11 @@ import { CarType } from '../models/carType';
 export class HomeComponent implements OnInit {
   cars: Car[];
   carTypes: CarType[];
+  CarAndType: CarWithCarTypeDetails[];
+
   searchText;
   merged: Object[];
+  manufacturersOrdered: string[];
 
  
 
@@ -26,9 +31,11 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() { 
     
-    this.GetCars(); 
     
-    this.GetCarTypes(); 
+    // this.GetCars(); 
+    
+    this.FillCarWithTypeDetails();
+    
 
   
 
@@ -39,33 +46,73 @@ export class HomeComponent implements OnInit {
   }
 
   
-  GetCars(): void {
-    this.carService.getCars()
-    .subscribe(cars => this.cars = cars)    ;
+   GetCars(): void {
+     this.carService.getCars().subscribe(cars => this.cars = cars);
+    
    
     
 
-  }
+   }
 
   GetCarTypes(): void {
     this.carTypeService.getCarTypes()
-    .subscribe(carTypes =>  {this.carTypes = carTypes});
+    .subscribe(carTypes =>  this.carTypes = carTypes);
 
     
     
   }
 
-  GetManufacturer(carType: number  ) {
-   
-//
 
+  GetTypeById(carTypeId: number): CarType 
+  {
+    return  this.carTypes.find(x => x.id == carTypeId);
 
-    return this.carTypes[1].carManufacturer;
-
-    //console.log(this.merged[0]);
 
   }
-  //
+
+
+
+   FillCarWithTypeDetails() {
+
+    this.GetCars();
+    this.GetCarTypes(); 
+
+    for (let i = 0; i < 2; i++) 
+    {
+      let newCar = new CarWithCarTypeDetails();
+      let carRef = this.cars[i];
+      
+
+      
+
+
+      newCar.carNumber = carRef.carNumber;
+      newCar.carType = carRef.carType;
+      newCar.region = carRef.region;
+      newCar.mileage = carRef.mileage;
+      newCar.manufacturer  = this.GetTypeById(carRef.carType).manufacturer;
+      newCar.gearType  = this.GetTypeById(carRef.carType).gearType;
+      newCar.carModel  = this.GetTypeById(carRef.carType).carModel;
+      newCar.dailyCost  = this.GetTypeById(carRef.carType).dailyCost;
+      newCar.dailyPenalty  = this.GetTypeById(carRef.carType).dailyPenalty;
+      newCar.carModel  = this.GetTypeById(carRef.carType).carModel;
+      newCar.ManufacuringYear  = this.GetTypeById(carRef.carType).ManufacuringYear;
+
+    
+      this.CarAndType.push(newCar);
+
+
+
+  }
+    
+
+
+
+
+
+  }
+
+  
 
 }
 

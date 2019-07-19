@@ -1,6 +1,6 @@
 export class CarType {
     id: number;
-    carManufacturer: string;
+    manufacturer: string;
     carModel: string;
     dailyCost: number;
     dailyPenalty: number;

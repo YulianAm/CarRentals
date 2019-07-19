@@ -1,4 +1,4 @@
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 
 <h1>
     Car Rental Service
@@ -11,69 +11,39 @@
 <br>
 <br>
 
-<div *ngFor=" let type of carTypes  " id="container" class="row col-md-3">
-        <p class="card-text"> {{type.manufacturer}} </p>
-</div>
-<!--filter:searchText-->
 
-<div *ngFor=" let car of cars  " id="container" class="row col-md-3">
 
-    <div  class="card " style="width: 18rem;">
+<p>
+    test
+</p>
+<div *ngIf="cars">
+    
+ <div *ngFor=" let car of CarAndType; let i = index " id="container" class="row col-md-3">
+       
+
+    <div class="card " style="width: 18rem;">
 
         <img height="150" width="220" class="card-img-top" src="data:image/png;base64,{{car.image}}"
             alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">Car Number: {{car.carNumber}}</h5>
             <h5 class="card-title">Car Region: {{car.region}}</h5>
-            <h5 class="card-title">Car Mileage: {{car.mileage}}</h5>
-            <h5 class="card-title">Car Manufacturer   {{carTypes[0].Manufacturer}} </h5>
+            <h5 class="card-title">Car Mileage: {{car.mileage}}</h5>   
+            <h5 class="card-title">index: {{i }}   </h5>
+            <h5 class="card-title">Car Manufacturer:  {{car.manufacturer}} </h5>
             <p class="card-text">car type sample : </p>
             <a href="#" class="btn btn-primary"> Rent </a>
         </div>
     </div>
     <br>
 </div>
-
-<div *ngFor=" let c of carTypes" >
-<div class="card " style="width: 18rem;">
-
-<h5> {{c.Manufacturer}}</h5>
-
 </div>
-</div>
+<!-- <div *ngFor=" let c of carTypes">
+    <div class="card " style="width: 18rem;">
 
+        <h5> {{c.Manufacturer}}</h5>
 
-<!--
-<div class="container"  >
-    <br>
-	<div  class="row" id="ads">
-
-            
-<div    *ngFor=" let car of cars" class="col-md-5">
-    <div  class="card rounded pad-div">
-        <div class="card-image">
-            <span class="card-notify-badge">Low KMS</span>
-            <span class="card-notify-year">2018</span>
-            <img class="img-fluid" src="data:image/png;base64,{{car.image}}" height="250" width="350" alt="Alternate Text" />
-        </div>
-        <div class="card-image-overlay m-auto">
-            <span class="card-detail-badge"> car.</span>
-            <span class="card-detail-badge">$28,000.00</span>
-            <span class="card-detail-badge">{{car.mileage}} Kms</span>
-        </div>
-        <div class="card-body text-center">
-            <div class="ad-title m-auto">
-                <h5>Honda Accord LX</h5>
-            </div>
-            <a class="ad-btn" href="#">View</a>
-        </div>
     </div>
-    <div style="height: 50px" ></div>
-    
-</div>
+</div> 
 
-
-
-
-</div>
-</div> -->
+-->

@@ -17,11 +17,11 @@ export class CarsService {
   getCars (): Observable<Car[]> {
     const urlCars: string = 'cars/find'; 
 
-    return this.http.get<Car[]>(baseUrl + urlCars)
-      .pipe(
+    return this.http.get<Car[]>(baseUrl + urlCars);
+      //.pipe(
         tap(_ => console.log('fetched cars')) //,
         //catchError(this.handleError)
-      );
+      //);
       
   }
   
