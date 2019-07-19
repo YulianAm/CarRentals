@@ -15,30 +15,57 @@ export class HomeComponent implements OnInit {
   cars: Car[];
   carTypes: CarType[];
   searchText;
+  merged: Object[];
+
+ 
+
 
   constructor(private carService: CarsService, 
     
-    private carType: CarTypesService, private nav: NavService) { }
+    private carTypeService: CarTypesService, private nav: NavService) { }
 
-  ngOnInit() { this.GetCars(); this.GetCarTypes(); 
+  ngOnInit() { 
     
-    this.nav.hide();
+    this.GetCars(); 
+    
+    this.GetCarTypes(); 
 
+  
+
+
+    this.nav.hide();
+    
     
   }
 
   
   GetCars(): void {
     this.carService.getCars()
-    .subscribe(cars => this.cars = cars);
+    .subscribe(cars => this.cars = cars)    ;
+   
+    
+
   }
 
   GetCarTypes(): void {
-    this.carType.getCarTypes()
-    .subscribe(carTypes => this.carTypes = carTypes);
+    this.carTypeService.getCarTypes()
+    .subscribe(carTypes =>  {this.carTypes = carTypes});
+
+    
     
   }
 
-GetInfoOnCar(){}
+  GetManufacturer(carType: number  ) {
+   
+//
+
+
+    return this.carTypes[1].carManufacturer;
+
+    //console.log(this.merged[0]);
+
+  }
+  //
+
 }
 

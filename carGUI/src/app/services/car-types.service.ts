@@ -11,6 +11,7 @@ import { CarType } from '../models/carType';
 })
 export class CarTypesService {
   carTypes: CarType []=[] ;
+  
   constructor(private http: HttpClient) { }
 
   getCarTypes (): Observable<CarType[]> {
@@ -23,4 +24,8 @@ export class CarTypesService {
       );
       
   }
+
+  
+  
+
 }

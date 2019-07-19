@@ -5,18 +5,20 @@
 </h1>
 
 <div class="search-hero">
-    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="on"
         placeholder="&#61442;  Start searching for a car by number or name ">
 </div>
 <br>
 <br>
 
+<div *ngFor=" let type of carTypes  " id="container" class="row col-md-3">
+        <p class="card-text"> {{type.manufacturer}} </p>
+</div>
+<!--filter:searchText-->
 
+<div *ngFor=" let car of cars  " id="container" class="row col-md-3">
 
-
-<div *ngFor=" let car of cars | filter:searchText" id="container" class="row col-md-3">
-
-    <div class="card " style="width: 18rem;">
+    <div  class="card " style="width: 18rem;">
 
         <img height="150" width="220" class="card-img-top" src="data:image/png;base64,{{car.image}}"
             alt="Card image cap">
@@ -24,8 +26,8 @@
             <h5 class="card-title">Car Number: {{car.carNumber}}</h5>
             <h5 class="card-title">Car Region: {{car.region}}</h5>
             <h5 class="card-title">Car Mileage: {{car.mileage}}</h5>
-            <h5 class="card-title">Car Manufacturer:   </h5>
-            <p class="card-text">sample text</p>
+            <h5 class="card-title">Car Manufacturer   {{carTypes[0].Manufacturer}} </h5>
+            <p class="card-text">car type sample : </p>
             <a href="#" class="btn btn-primary"> Rent </a>
         </div>
     </div>

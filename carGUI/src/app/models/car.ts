@@ -1,3 +1,5 @@
+import { CarType } from './carType';
+
 export class Car {
     carNumber: string;
     carType: number;
@@ -6,6 +8,7 @@ export class Car {
     isUndamaged: boolean;
     region: string;
     mileage: number;
+    
 
    
 }

@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace carsAPI.Controllers
 {
+    [RoutePrefix("api/carTypes")]
     public class CarTypesController : ApiController
     {
         
@@ -52,6 +53,8 @@ namespace carsAPI.Controllers
         }
 
         // GET: api/carTypes/5
+        [HttpGet]
+        [Route("findId")]
         public string Get(int id)
         {
             return "value";
