@@ -8,7 +8,8 @@ export class Car {
     isUndamaged: boolean;
     region: string;
     mileage: number;
+    carTypeObject?: CarType;
     
-
+//
    
 }

@@ -15,6 +15,6 @@ namespace carsAPI.Models
         public string region { get; set; }
         public int mileage { get; set; }
         public Byte[] image { get; set; }
-
+        public carTypeEntity carTypeObject {get;set;}
     }
 }

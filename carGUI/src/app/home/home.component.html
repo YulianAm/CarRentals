@@ -1,49 +1,63 @@
-
-
 <h1>
     Car Rental Service
 </h1>
 
 <div class="search-hero">
-    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="on"
-        placeholder="&#61442;  Start searching for a car by number or name ">
+    <input class="form-control" type="text" (keyup.enter)="onEnter($event)" name="search" [(ngModel)]="searchText"
+        autocomplete="on" placeholder="&#61442;  Start searching for a car by number or name ">
 </div>
+
 <br>
 <br>
 
 
 
 <p>
-    test
+    {{searchValue}}
 </p>
-<div *ngIf="cars">
-    
- <div *ngFor=" let car of CarAndType; let i = index " id="container" class="row col-md-3">
-       
 
-    <div class="card " style="width: 18rem;">
+<div class="container">
+    <div class="row">
 
-        <img height="150" width="220" class="card-img-top" src="data:image/png;base64,{{car.image}}"
-            alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">Car Number: {{car.carNumber}}</h5>
-            <h5 class="card-title">Car Region: {{car.region}}</h5>
-            <h5 class="card-title">Car Mileage: {{car.mileage}}</h5>   
-            <h5 class="card-title">index: {{i }}   </h5>
-            <h5 class="card-title">Car Manufacturer:  {{car.manufacturer}} </h5>
-            <p class="card-text">car type sample : </p>
-            <a href="#" class="btn btn-primary"> Rent </a>
+
+
+        <div *ngIf="cars ">
+
+            <div *ngFor=" let car of cars; let i = index " id="container">
+                <div class="col-md-4">
+
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top " height="150" width="220"
+                            src="data:image/png;base64,{{car.image}}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title"> </h5>
+                        </div>
+
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Car Model: {{car?.carTypeObject.model }} </li>
+                            <li class="list-group-item">Car Manufacturer: {{car?.carTypeObject.manufacturer}}</li>
+                            <li class="list-group-item">Car Gear Type: {{car?.carTypeObject.gearType}}</li>
+                            <li class="list-group-item">Car Manufacturing
+                                Year:{{car?.carTypeObject.manufacturingYear  | date: short  }}</li>
+                            <li class="list-group-item">Car Region: {{car?.region}}</li>
+
+                            <li class="list-group-item">Car daily cost: {{car?.carTypeObject.dailyCost}} </li>
+                            <li class="list-group-item">Car Mileage: {{car?.mileage}} </li>
+                        </ul>
+
+                        <div class="card-body text-success">
+
+                            <a href="#" class="btn btn-primary"> Rent </a>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+
+
+
+
+
+                </div>
+
+            </div>
         </div>
-    </div>
-    <br>
-</div>
-</div>
-<!-- <div *ngFor=" let c of carTypes">
-    <div class="card " style="width: 18rem;">
-
-        <h5> {{c.Manufacturer}}</h5>
-
-    </div>
-</div> 
-
--->

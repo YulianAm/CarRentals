@@ -8,7 +8,7 @@ using System.Web.Http;
 using carsAPI.Models;
 using Newtonsoft.Json;
 using carsAPI.Controllers;
-
+using carsAPI.BL;
 
 namespace carsAPI.Controllers
 {
@@ -28,7 +28,11 @@ namespace carsAPI.Controllers
 
                 try
                 {
-                    var carsEntities = db.cars.Select(p => new carEntity()
+
+                    var carsEntitiesOriginal = db.cars.ToList();
+
+
+                  var carsEntities= carsEntitiesOriginal.Select(p => new carEntity()
                     {
 
                         carNumber = p.carNumber,
@@ -37,24 +41,27 @@ namespace carsAPI.Controllers
                         isUndamaged = p.isUndamaged,
                         region = p.region,
                         mileage = p.mileage ?? int.MinValue,
-                        image = p.image
-                        
+                        image = p.image,
+                        carTypeObject = CarTypeEntityParser.castObje(p.carType1)
 
+                    });
 
-                    }).ToList();
+               
                     var response = new HttpResponseMessage(HttpStatusCode.OK);
                     response.Content = new StringContent(JsonConvert.SerializeObject(carsEntities));
                     response.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("applicatoin/json");
                     return response;
 
                 }
-                catch
+                catch (Exception e)
                 {
 
                     return new HttpResponseMessage(HttpStatusCode.BadRequest);
                 }
             }
         }
+
+        
 
         // GET: api/Cars/5
         public string Get(int id)

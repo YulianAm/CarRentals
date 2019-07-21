@@ -1,9 +1,10 @@
 export class CarType {
     id: number;
     manufacturer: string;
-    carModel: string;
+    model: string;
     dailyCost: number;
     dailyPenalty: number;
-    ManufacuringYear: Date;
+    manufacuringYear: Date;
     gearType: string;
+    
 }
