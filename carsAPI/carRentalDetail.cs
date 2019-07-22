@@ -20,8 +20,9 @@ namespace carsAPI
         public System.DateTime actualReturnDate { get; set; }
         public Nullable<int> userId { get; set; }
         public string carNumber { get; set; }
+        public bool isActive { get; set; }
     
-        public virtual car car { get; set; }
         public virtual user user { get; set; }
+        public virtual car car { get; set; }
     }
 }

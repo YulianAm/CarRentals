@@ -20,6 +20,7 @@
     <Property Name="actualReturnDate" Type="datetime" Nullable="false" />
     <Property Name="userId" Type="int" />
     <Property Name="carNumber" Type="varchar" MaxLength="20" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="cars">
     <Key>
@@ -29,9 +30,9 @@
     <Property Name="carType" Type="int" />
     <Property Name="isAvailable" Type="bit" Nullable="false" />
     <Property Name="isUndamaged" Type="bit" Nullable="false" />
-    <Property Name="region" Type="varchar" MaxLength="100" />
     <Property Name="mileage" Type="int" />
     <Property Name="image" Type="image" />
+    <Property Name="branchId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="carTypes">
     <Key>
@@ -85,6 +86,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__cars__branchId__5AEE82B9">
+    <End Role="branch" Type="Self.branch" Multiplicity="1" />
+    <End Role="cars" Type="Self.cars" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="branch">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cars">
+        <PropertyRef Name="branchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__cars__carType__4D94879B">
     <End Role="carTypes" Type="Self.carTypes" Multiplicity="0..1" />
     <End Role="cars" Type="Self.cars" Multiplicity="*" />
@@ -110,6 +123,10 @@
     <AssociationSet Name="FK__carRental__userI__52593CB8" Association="Self.FK__carRental__userI__52593CB8">
       <End Role="users" EntitySet="users" />
       <End Role="carRentalDetails" EntitySet="carRentalDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__cars__branchId__5AEE82B9" Association="Self.FK__cars__branchId__5AEE82B9">
+      <End Role="branch" EntitySet="branch" />
+      <End Role="cars" EntitySet="cars" />
     </AssociationSet>
     <AssociationSet Name="FK__cars__carType__4D94879B" Association="Self.FK__cars__carType__4D94879B">
       <End Role="carTypes" EntitySet="carTypes" />

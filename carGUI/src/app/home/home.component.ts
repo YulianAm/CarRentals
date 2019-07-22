@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CarsService } from '../services/cars.service';
+
 import { Car } from '../models/Car';
 import { NavService } from '../services/nav.service';
 
@@ -8,6 +8,7 @@ import { CarType } from '../models/carType';
 import { Observable } from 'rxjs';
 import { CarWithCarTypeDetails } from '../models/carWithTypeDetails';
 import { delay } from 'rxjs/operators';
+import { CarsService } from '../services/car.service';
 
 @Component({
   selector: 'app-home',
@@ -50,6 +51,11 @@ export class HomeComponent implements OnInit {
 
   }
 
+  CarToRent(car: Car) {
+    this.carService.carToRent = car;
+
+  }
+
 
   GetCars(): void {
     this.carService.getCars().subscribe((cars) => {
@@ -82,52 +88,6 @@ export class HomeComponent implements OnInit {
 }
 
 
-
-/*
-  async delayM(milliseconds: number) {
-    return new Promise<void>(resolve => {
-        setTimeout(resolve, milliseconds);
-    });
-}
-
-
-  async FillCarWithTypeDetails() {
-
-    
-
-    for (let i = 0; i < 2; i++) {
-      let newCar = new CarWithCarTypeDetails();
-
-      await this.delayM(400);
-      
-      if(this.cars) {
-        console.log(this.cars);
-
-
-        
-      let carRef = this.cars[i];
-
-      newCar.carNumber = carRef.carNumber;
-      newCar.carType = carRef.carType;
-      newCar.region = carRef.region;
-      newCar.mileage = carRef.mileage;
-      newCar.manufacturer = this.GetTypeById(carRef.carType).manufacturer;
-      newCar.gearType = this.GetTypeById(carRef.carType).gearType;
-      newCar.carModel = this.GetTypeById(carRef.carType).model;
-      newCar.dailyCost = this.GetTypeById(carRef.carType).dailyCost;
-      newCar.dailyPenalty = this.GetTypeById(carRef.carType).dailyPenalty;
-      newCar.carModel = this.GetTypeById(carRef.carType).model;
-      newCar.ManufacuringYear = this.GetTypeById(carRef.carType).manufacuringYear;
-
-
-      this.CarAndType.push(newCar);
-
-    }
-  }
-
-  }
-
-*/
 
 
 

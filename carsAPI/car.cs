@@ -24,10 +24,11 @@ namespace carsAPI
         public Nullable<int> carType { get; set; }
         public bool isAvailable { get; set; }
         public bool isUndamaged { get; set; }
-        public string region { get; set; }
         public Nullable<int> mileage { get; set; }
         public byte[] image { get; set; }
+        public int branchId { get; set; }
     
+        public virtual branch branch { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<carRentalDetail> carRentalDetails { get; set; }
         public virtual carType carType1 { get; set; }

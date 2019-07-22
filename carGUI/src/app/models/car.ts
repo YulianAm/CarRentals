@@ -1,4 +1,5 @@
 import { CarType } from './carType';
+import { branch } from './branch';
 
 export class Car {
     carNumber: string;
@@ -6,9 +7,9 @@ export class Car {
     imagePath?: string;
     isAvailable: boolean;
     isUndamaged: boolean;
-    region: string;
     mileage: number;
     carTypeObject?: CarType;
+    branch?: branch;
     
 //
    

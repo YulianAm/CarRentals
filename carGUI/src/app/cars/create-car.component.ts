@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Car } from '../models/car';
-import { CarsService } from '../services/cars.service';
+import { CarsService } from '../services/car.service';
+
 
 @Component({
   selector: 'app-create-car',
@@ -16,7 +17,6 @@ export class CreateCarComponent implements OnInit {
     imagePath: null,
     isAvailable: null,
     isUndamaged: null,
-    region: null,
     mileage: null
   }
   

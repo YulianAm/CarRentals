@@ -10,6 +10,7 @@ import { baseUrl } from 'src/environments/environment';
 })
 export class CarsService {
   car: Car []=[] ;
+  carToRent: Car;
 
   
   constructor(private http: HttpClient) {}
@@ -59,3 +60,4 @@ export class CarsService {
   handleError(): void { console.log("error");}
   
 }
+

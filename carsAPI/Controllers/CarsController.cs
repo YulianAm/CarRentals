@@ -12,12 +12,12 @@ using carsAPI.BL;
 
 namespace carsAPI.Controllers
 {
-    
+
     [RoutePrefix("api/cars")]
     public class CarsController : ApiController
     {
-        
-        
+
+
         // GET: api/cars
         [HttpGet]
         [Route("find")]
@@ -32,21 +32,22 @@ namespace carsAPI.Controllers
                     var carsEntitiesOriginal = db.cars.ToList();
 
 
-                  var carsEntities= carsEntitiesOriginal.Select(p => new carEntity()
+                    var carsEntities = carsEntitiesOriginal.Select(p => new carEntity()
                     {
 
                         carNumber = p.carNumber,
                         carType = p.carType ?? int.MinValue,
                         isAvailable = p.isAvailable,
                         isUndamaged = p.isUndamaged,
-                        region = p.region,
                         mileage = p.mileage ?? int.MinValue,
                         image = p.image,
-                        carTypeObject = CarTypeEntityParser.castObje(p.carType1)
+                        carTypeObject = CarTypeEntityParser.castObje(p.carType1),
+                        branchObject = BranchEntityParser.castObje(p.branch)
+
 
                     });
 
-               
+
                     var response = new HttpResponseMessage(HttpStatusCode.OK);
                     response.Content = new StringContent(JsonConvert.SerializeObject(carsEntities));
                     response.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("applicatoin/json");
@@ -61,7 +62,9 @@ namespace carsAPI.Controllers
             }
         }
 
-        
+
+
+
 
         // GET: api/Cars/5
         public string Get(int id)
@@ -88,7 +91,7 @@ namespace carsAPI.Controllers
                             carType = carEntity.carType,
                             isAvailable = carEntity.isAvailable,
                             isUndamaged = carEntity.isUndamaged,
-                            region = carEntity.region,
+                            //branch = carEntity.branch,
                             mileage = carEntity.mileage
 
                         };
@@ -130,7 +133,7 @@ namespace carsAPI.Controllers
                         currentCar.carType = car.carType;
                         currentCar.isAvailable = car.isAvailable;
                         currentCar.isUndamaged = car.isUndamaged;
-                        currentCar.region = car.region;
+                        //currentCar.branch = car.branch;
                         currentCar.mileage = car.mileage;
                         db.SaveChanges();
                         return response;

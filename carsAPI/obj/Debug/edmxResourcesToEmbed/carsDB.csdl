@@ -9,6 +9,7 @@
     <Property Name="Branchaddress" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
     <Property Name="locationX" Type="Int32" />
     <Property Name="locationY" Type="Int32" />
+    <NavigationProperty Name="cars" Relationship="rentcarsModel.FK__cars__branchId__5AEE82B9" FromRole="branch" ToRole="car" />
   </EntityType>
   <EntityType Name="carRentalDetail">
     <Key>
@@ -20,22 +21,9 @@
     <Property Name="actualReturnDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="userId" Type="Int32" />
     <Property Name="carNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="car" Relationship="Self.FK__carRental__carNu__534D60F1" FromRole="carRentalDetails" ToRole="cars" />
     <NavigationProperty Name="user" Relationship="Self.FK__carRental__userI__52593CB8" FromRole="carRentalDetails" ToRole="users" />
-  </EntityType>
-  <EntityType Name="car">
-    <Key>
-      <PropertyRef Name="carNumber" />
-    </Key>
-    <Property Name="carNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="carType" Type="Int32" />
-    <Property Name="isAvailable" Type="Boolean" Nullable="false" />
-    <Property Name="isUndamaged" Type="Boolean" Nullable="false" />
-    <Property Name="region" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="carRentalDetails" Relationship="Self.FK__carRental__carNu__534D60F1" FromRole="cars" ToRole="carRentalDetails" />
-    <NavigationProperty Name="carType1" Relationship="Self.FK__cars__carType__4D94879B" FromRole="cars" ToRole="carTypes" />
-    <Property Name="mileage" Type="Int32" />
-    <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="car" Relationship="rentcarsModel.FK__carRental__carNu__534D60F1" FromRole="carRentalDetail" ToRole="car" />
   </EntityType>
   <EntityType Name="carType">
     <Key>
@@ -48,7 +36,7 @@
     <Property Name="dailyPenalty" Type="Double" Nullable="false" />
     <Property Name="manufacturingYear" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="gearType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="cars" Relationship="Self.FK__cars__carType__4D94879B" FromRole="carTypes" ToRole="cars" />
+    <NavigationProperty Name="cars" Relationship="rentcarsModel.FK__cars__carType__4D94879B" FromRole="carType" ToRole="car" />
   </EntityType>
   <EntityType Name="user">
     <Key>
@@ -67,18 +55,6 @@
     <Property Name="isAdmin" Type="Boolean" />
     <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
-  <Association Name="FK__carRental__carNu__534D60F1">
-    <End Role="cars" Type="Self.car" Multiplicity="0..1" />
-    <End Role="carRentalDetails" Type="Self.carRentalDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="cars">
-        <PropertyRef Name="carNumber" />
-      </Principal>
-      <Dependent Role="carRentalDetails">
-        <PropertyRef Name="carNumber" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__carRental__userI__52593CB8">
     <End Role="users" Type="Self.user" Multiplicity="0..1" />
     <End Role="carRentalDetails" Type="Self.carRentalDetail" Multiplicity="*" />
@@ -91,35 +67,78 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__cars__carType__4D94879B">
-    <End Role="carTypes" Type="Self.carType" Multiplicity="0..1" />
-    <End Role="cars" Type="Self.car" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="carTypes">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="cars">
-        <PropertyRef Name="carType" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="rentcarsEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="branches" EntityType="Self.branch" />
     <EntitySet Name="carRentalDetails" EntityType="Self.carRentalDetail" />
-    <EntitySet Name="cars" EntityType="Self.car" />
     <EntitySet Name="carTypes" EntityType="Self.carType" />
     <EntitySet Name="users" EntityType="Self.user" />
-    <AssociationSet Name="FK__carRental__carNu__534D60F1" Association="Self.FK__carRental__carNu__534D60F1">
-      <End Role="cars" EntitySet="cars" />
-      <End Role="carRentalDetails" EntitySet="carRentalDetails" />
-    </AssociationSet>
     <AssociationSet Name="FK__carRental__userI__52593CB8" Association="Self.FK__carRental__userI__52593CB8">
       <End Role="users" EntitySet="users" />
       <End Role="carRentalDetails" EntitySet="carRentalDetails" />
     </AssociationSet>
-    <AssociationSet Name="FK__cars__carType__4D94879B" Association="Self.FK__cars__carType__4D94879B">
-      <End Role="carTypes" EntitySet="carTypes" />
-      <End Role="cars" EntitySet="cars" />
+    <EntitySet Name="cars" EntityType="rentcarsModel.car" />
+    <AssociationSet Name="FK__cars__branchId__5AEE82B9" Association="rentcarsModel.FK__cars__branchId__5AEE82B9">
+      <End Role="branch" EntitySet="branches" />
+      <End Role="car" EntitySet="cars" />
+    </AssociationSet>
+    <AssociationSet Name="FK__carRental__carNu__534D60F1" Association="rentcarsModel.FK__carRental__carNu__534D60F1">
+      <End Role="car" EntitySet="cars" />
+      <End Role="carRentalDetail" EntitySet="carRentalDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__cars__carType__4D94879B" Association="rentcarsModel.FK__cars__carType__4D94879B">
+      <End Role="carType" EntitySet="carTypes" />
+      <End Role="car" EntitySet="cars" />
     </AssociationSet>
   </EntityContainer>
+  <EntityType Name="car">
+    <Key>
+      <PropertyRef Name="carNumber" />
+    </Key>
+    <Property Name="carNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="carType" Type="Int32" />
+    <Property Name="isAvailable" Type="Boolean" Nullable="false" />
+    <Property Name="isUndamaged" Type="Boolean" Nullable="false" />
+    <Property Name="mileage" Type="Int32" />
+    <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="branchId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="branch" Relationship="rentcarsModel.FK__cars__branchId__5AEE82B9" FromRole="car" ToRole="branch" />
+    <NavigationProperty Name="carRentalDetails" Relationship="rentcarsModel.FK__carRental__carNu__534D60F1" FromRole="car" ToRole="carRentalDetail" />
+    <NavigationProperty Name="carType1" Relationship="rentcarsModel.FK__cars__carType__4D94879B" FromRole="car" ToRole="carType" />
+  </EntityType>
+  <Association Name="FK__cars__branchId__5AEE82B9">
+    <End Type="rentcarsModel.branch" Role="branch" Multiplicity="1" />
+    <End Type="rentcarsModel.car" Role="car" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="branch">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="car">
+        <PropertyRef Name="branchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__carRental__carNu__534D60F1">
+    <End Type="rentcarsModel.car" Role="car" Multiplicity="0..1" />
+    <End Type="rentcarsModel.carRentalDetail" Role="carRentalDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="car">
+        <PropertyRef Name="carNumber" />
+      </Principal>
+      <Dependent Role="carRentalDetail">
+        <PropertyRef Name="carNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__cars__carType__4D94879B">
+    <End Type="rentcarsModel.carType" Role="carType" Multiplicity="0..1" />
+    <End Type="rentcarsModel.car" Role="car" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="carType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="car">
+        <PropertyRef Name="carType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
 import { CarComponent } from './cars/cars.component';
-import { CarsService } from './services/cars.service';
+
 import { UsersComponent } from './users/users.component'; 
 import { CreateUserComponent } from './users/create-user.component';
 import { FormsModule } from '@angular/forms';
@@ -25,6 +25,9 @@ import { ErrorInterceptor } from './services/error.interceptor';
 
 // search module
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { CarRentFormComponent } from './car-rent-form/car-rent-form.component';
+import { SearchHomePageComponent } from './search-home-page/search-home-page.component';
+import { CarsService } from './services/car.service';
 
 
 @NgModule({
@@ -40,7 +43,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     LoginComponent,
     NavBarComponent,
     AdminComponent,
-    HomeComponent
+    HomeComponent,
+    CarRentFormComponent,
+    SearchHomePageComponent
   ],
   imports: [
     BrowserModule,

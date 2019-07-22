@@ -14,10 +14,19 @@ namespace carsAPI
     
     public partial class branch
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public branch()
+        {
+            this.cars = new HashSet<car>();
+        }
+    
         public int id { get; set; }
         public string BranchName { get; set; }
         public string Branchaddress { get; set; }
         public Nullable<int> locationX { get; set; }
         public Nullable<int> locationY { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<car> cars { get; set; }
     }
 }

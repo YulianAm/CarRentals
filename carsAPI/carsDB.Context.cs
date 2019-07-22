@@ -27,8 +27,8 @@ namespace carsAPI
     
         public virtual DbSet<branch> branches { get; set; }
         public virtual DbSet<carRentalDetail> carRentalDetails { get; set; }
-        public virtual DbSet<car> cars { get; set; }
         public virtual DbSet<carType> carTypes { get; set; }
         public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<car> cars { get; set; }
     }
 }

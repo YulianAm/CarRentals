@@ -7,6 +7,9 @@ import { UsersComponent } from './users/users.component';
 import { CreateUserComponent } from './users/create-user.component';
 import { AdminComponent } from './admin.component';
 import { HomeComponent } from './home/home.component';
+import { CarRentFormComponent } from './car-rent-form/car-rent-form.component';
+import { SearchHomePageComponent } from './search-home-page/search-home-page.component';
+
 
 
 const routes: Routes = [
@@ -17,9 +20,12 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'home', component: HomeComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' }
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'rentCar', component:  CarRentFormComponent},
+  { path: 'searchHome', component:  SearchHomePageComponent}
+  
 ];
-
+//
 
 
 @NgModule({

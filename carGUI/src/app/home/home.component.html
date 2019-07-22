@@ -24,6 +24,7 @@
         <div *ngIf="cars ">
 
             <div *ngFor=" let car of cars; let i = index " id="container">
+                <div *ngIf="car.isAvailable">
                 <div class="col-md-4">
 
                     <div class="card" style="width: 18rem;">
@@ -46,12 +47,15 @@
                         </ul>
 
                         <div class="card-body text-success">
+                                
 
-                            <a href="#" class="btn btn-primary"> Rent </a>
+                            <a routerLink="/rentCar" (click)="CarToRent(car)" class="btn btn-primary"> Rent </a>
                         </div>
                         <br>
                         <br>
+
                     </div>
+                </div>
 
 
 

@@ -15,25 +15,13 @@
     <EntitySetMapping Name="carRentalDetails">
       <EntityTypeMapping TypeName="rentcarsModel.carRentalDetail">
         <MappingFragment StoreEntitySet="carRentalDetails">
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="startDate" ColumnName="startDate" />
           <ScalarProperty Name="returnDate" ColumnName="returnDate" />
           <ScalarProperty Name="actualReturnDate" ColumnName="actualReturnDate" />
           <ScalarProperty Name="userId" ColumnName="userId" />
           <ScalarProperty Name="carNumber" ColumnName="carNumber" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="cars">
-      <EntityTypeMapping TypeName="rentcarsModel.car">
-        <MappingFragment StoreEntitySet="cars">
-          <ScalarProperty Name="image" ColumnName="image" />
-          <ScalarProperty Name="mileage" ColumnName="mileage" />
-          <ScalarProperty Name="carNumber" ColumnName="carNumber" />
-          <ScalarProperty Name="carType" ColumnName="carType" />
-          <ScalarProperty Name="isAvailable" ColumnName="isAvailable" />
-          <ScalarProperty Name="isUndamaged" ColumnName="isUndamaged" />
-          <ScalarProperty Name="region" ColumnName="region" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -64,6 +52,19 @@
           <ScalarProperty Name="gender" ColumnName="gender" />
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="userPassword" ColumnName="userPassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cars">
+      <EntityTypeMapping TypeName="rentcarsModel.car">
+        <MappingFragment StoreEntitySet="cars">
+          <ScalarProperty Name="branchId" ColumnName="branchId" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="mileage" ColumnName="mileage" />
+          <ScalarProperty Name="isUndamaged" ColumnName="isUndamaged" />
+          <ScalarProperty Name="isAvailable" ColumnName="isAvailable" />
+          <ScalarProperty Name="carType" ColumnName="carType" />
+          <ScalarProperty Name="carNumber" ColumnName="carNumber" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

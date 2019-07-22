@@ -1,0 +1,59 @@
+<p>
+  search-home-page works!
+</p>
+
+
+
+
+<form #userForm="ngForm" ngNativeValidate (ngSubmit)="Create(user)" >
+    <div class = "panel panel-primary" >
+    
+        <div class="panel-heading">
+          <h3 class="panel-title"> Choose Dates  </h3>
+        </div>
+    
+        <div class="panel-body">
+    
+          
+    
+                  <div class="form-group " [class.has-success]="dateControl.valid" [class.has-error]="dateControl.invalid && dateControl.touched">
+                      <label for="pickUpDate"> Pick Up Date </label>
+                      <input #dateControl="ngModel" required id="pickUpDate" name="pickUpDate" [(ngModel)]="pickUpDate" type="date"  class="form-control">
+                      <span class="help-block" *ngIf="dateControl.invalid && dateControl.touched">
+                        PickUp Date is requiered
+                      </span>
+                    </div>
+
+                    <div class="form-group " [class.has-success]="dateControl.valid" [class.has-error]="dateControl.invalid && dateControl.touched">
+                        <label for="returnDate">Return Date</label>
+                        <input #dateControl="ngModel" required id="returnDate" name="pickUpDate" [(ngModel)]="returnDate" type="date"  class="form-control">
+                        <span class="help-block" *ngIf="dateControl.invalid && dateControl.touched">
+                            DropOff Date is requiered
+                        </span>
+                      </div>
+
+    
+        
+        </div>
+
+
+      </div>
+    
+        
+          <div  class="panel-footer">
+              <button type="submit" class="btn btn-primary"> Continue  </button>
+          </div>
+    
+          <div class="form-group">
+              <label for="power">Pick up Location</label>
+              <select class="form-control"  id="power"
+                      required
+                      [(ngModel)]="this.carSerivce" name="region">
+                <option *ngFor="let branch of branches" [value]="region">{{region}}</option>
+              </select>
+            </div>
+    
+    
+    
+    </form>
+    

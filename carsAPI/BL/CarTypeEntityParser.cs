@@ -11,7 +11,7 @@ namespace carsAPI.BL
         public static carTypeEntity castObje(carType carType)
         {
             carTypeEntity CarTypeObject = new carTypeEntity();
-            CarTypeObject.dailyCost = carType.dailyCost;
+
 
             CarTypeObject.manufacturer = carType.manufacturer;
             CarTypeObject.model = carType.model;
