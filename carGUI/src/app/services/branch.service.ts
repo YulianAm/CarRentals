@@ -15,13 +15,16 @@ export class BranchService {
 
   
   getBranches (): Observable<branch[]> {
-    const urlCars: string = 'branches/find'; 
-
-    return this.http.get<branch[]>(baseUrl + urlCars)
+    const urlBranch: string = 'branches/find'; 
+    
+    console.log('fethched branches');
+    return this.http.get<branch[]>(baseUrl + urlBranch)
       .pipe(
         //tap(_ => console.log('fetched car types')) //,
         //catchError(this.handleError)
       );
+
+
 
       
 }

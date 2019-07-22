@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using carsAPI.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,13 +26,13 @@ namespace carsAPI.Controllers
                     var branchEntitiesOriginal = db.branches.ToList();
 
 
-                    var branchEntities = branchEntitiesOriginal.Select(p => new branch()
+                    var branchEntities = branchEntitiesOriginal.Select(p => new BranchEntity()
                     {
                         id = p.id,
                         Branchaddress = p.Branchaddress,
                         BranchName = p.BranchName,
-                        locationX = p.locationX,
-                        locationY =p.locationY
+                        locationX = int.Parse(p.locationX.ToString()),
+                        locationY = int.Parse(p.locationY.ToString()),
                     });
 
 
