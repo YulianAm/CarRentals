@@ -28,6 +28,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { CarRentFormComponent } from './car-rent-form/car-rent-form.component';
 import { SearchHomePageComponent } from './search-home-page/search-home-page.component';
 import { CarsService } from './services/car.service';
+import { searchFormStage1 } from './models/searchFormStage1';
+import { SearchFormDataService } from './services/search-form-data.service';
+import { UniquePipe } from './pipes/unique.pipe';
 
 
 @NgModule({
@@ -45,7 +48,10 @@ import { CarsService } from './services/car.service';
     AdminComponent,
     HomeComponent,
     CarRentFormComponent,
-    SearchHomePageComponent
+    SearchHomePageComponent,
+    UniquePipe
+    
+    
   ],
   imports: [
     BrowserModule,
@@ -58,8 +64,9 @@ import { CarsService } from './services/car.service';
     Ng2SearchPipeModule,
     
     
+    
   ],
-  providers: [ CarsService, UserAuthentication, {
+  providers: [ CarsService, SearchFormDataService, UserAuthentication,{
     provide: HTTP_INTERCEPTORS,
     useClass: Interceptor,
     multi: true

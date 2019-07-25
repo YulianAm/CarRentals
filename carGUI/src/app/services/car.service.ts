@@ -20,9 +20,13 @@ export class CarsService {
 
     return this.http.get<Car[]>(baseUrl + urlCars)
       .pipe(
-        tap(_ => console.log('fetched cars')) //,
+        tap(_ => console.log('fetched cars' )) //,
         //catchError(this.handleError)
+        
       );
+
+      
+
       
   }
   

@@ -1,8 +1,12 @@
-<!--
-<h1> Thanks for choosing {{car?.carTypeObject.model }}! that's a great choice! </h1>
-<h2> let's continue </h2>
 
-<div class="container">
+<h1> Thanks for choosing us! </h1>
+<h2> let's continue phase 2/3</h2>
+
+<div *ngFor="let car of cars "  class="container">
+  <!--&& car.branch.id == form.formData.branch.id-->
+
+<div *ngIf="car.isAvailable && car.branchObject.BranchName == form.formData.branch">
+
 <div class="card" style="width: 18rem;">
     <img class="card-img-top " height="200" width="300"
         src="data:image/png;base64,{{car.image}}" alt="Card image cap">
@@ -16,7 +20,7 @@
         <li class="list-group-item">Car Gear Type: {{car?.carTypeObject.gearType}}</li>
         <li class="list-group-item">Car Manufacturing
             Year:{{car?.carTypeObject.manufacturingYear  | date: short  }}</li>
-        <li class="list-group-item">Car Region: {{car?.region}}</li>
+        <li class="list-group-item">Car Region: {{car?.branchObject.BranchName}}</li>
 
         <li class="list-group-item">Car daily cost: {{car?.carTypeObject.dailyCost}} </li>
         <li class="list-group-item">Car Mileage: {{car?.mileage}} </li>
@@ -24,8 +28,9 @@
 
     <br>
     <br>
-
 </div>
--->
+</div>
+
+
 
 
