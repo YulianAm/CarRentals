@@ -5,6 +5,8 @@ import { CarsService } from '../services/car.service';
 import { Router } from '@angular/router';
 import { SearchFormDataService } from '../services/search-form-data.service';
 import { searchFormStage1 } from '../models/searchFormStage1';
+import { CarType } from '../models/carType';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-car-rent-form',
@@ -13,12 +15,13 @@ import { searchFormStage1 } from '../models/searchFormStage1';
 })
 export class CarRentFormComponent implements OnInit {
  car: Car;
- pickUpDate: Date;
- returnDate: Date;
  totalCost: number;
  totalPenalty: number;
+ numberOfRentDays: number;
 
  cars: Car[];
+
+ uniqueTypes: CarType[];
 
 
 
@@ -46,6 +49,9 @@ export class CarRentFormComponent implements OnInit {
    
 
     this.Get();
+    //this.GetTotalCostAndDays();
+ 
+
     console.log(this.cars);
 
     
@@ -58,6 +64,17 @@ export class CarRentFormComponent implements OnInit {
   Get(): void {
     this.carService.getCars()
     .subscribe(cars => this.cars = cars);
+  }
+
+  GetTotalCostAndDays() {
+
+    var diffMillisec = this.form.formData.returnDate.getTime() - this.form.formData.pickUpDate.getTime();
+
+    this.numberOfRentDays = Math.round(Math.abs(diffMillisec/(1000*60*60*24)));
+    
+  }
+  GoToRentCarPage(car: Car){
+    console.log(car);
   }
   
 
