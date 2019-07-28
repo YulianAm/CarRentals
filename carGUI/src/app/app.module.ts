@@ -31,6 +31,7 @@ import { CarsService } from './services/car.service';
 import { searchFormStage1 } from './models/searchFormStage1';
 import { SearchFormDataService } from './services/search-form-data.service';
 import { UniquePipe } from './pipes/unique.pipe';
+import { FinalRentFormComponent } from './final-rent-form/final-rent-form.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { UniquePipe } from './pipes/unique.pipe';
     HomeComponent,
     CarRentFormComponent,
     SearchHomePageComponent,
-    UniquePipe
+    UniquePipe,
+    FinalRentFormComponent
     
     
   ],

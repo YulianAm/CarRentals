@@ -17,7 +17,7 @@ export class CarRentFormComponent implements OnInit {
  car: Car;
  totalCost: number;
  totalPenalty: number;
- numberOfRentDays: number;
+
 
  cars: Car[];
 
@@ -66,15 +66,17 @@ export class CarRentFormComponent implements OnInit {
     .subscribe(cars => this.cars = cars);
   }
 
-  GetTotalCostAndDays() {
-
-    var diffMillisec = this.form.formData.returnDate.getTime() - this.form.formData.pickUpDate.getTime();
-
-    this.numberOfRentDays = Math.round(Math.abs(diffMillisec/(1000*60*60*24)));
-    
-  }
+  
   GoToRentCarPage(car: Car){
     console.log(car);
+    this.form.formData.carToRent = car;
+
+    this.form.formData.totalRentCost = this.form.formData.totalNumbweOfDays * this.form.formData.carToRent.carTypeObject.dailyCost;
+    this.form.formData.totalPenaltyCost = this.form.formData.totalNumbweOfDays * this.form.formData.carToRent.carTypeObject.dailyPenalty;
+
+
+    this.router.navigate(['/finalForm']);
+
   }
   
 

@@ -9,6 +9,7 @@ import { AdminComponent } from './admin.component';
 import { HomeComponent } from './home/home.component';
 import { CarRentFormComponent } from './car-rent-form/car-rent-form.component';
 import { SearchHomePageComponent } from './search-home-page/search-home-page.component';
+import { FinalRentFormComponent } from './final-rent-form/final-rent-form.component';
 
 
 
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'rentCar', component:  CarRentFormComponent},
-  { path: 'searchHome', component:  SearchHomePageComponent}
+  { path: 'searchHome', component:  SearchHomePageComponent},
+  { path: 'finalForm', component:  FinalRentFormComponent}
   
 ];
 //

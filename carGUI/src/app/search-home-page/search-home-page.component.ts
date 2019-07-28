@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Form, NgForm } from '@angular/forms';
 import { SearchFormDataService } from '../services/search-form-data.service';
 import { searchFormStage1 } from '../models/searchFormStage1';
+import { ifStmt } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -47,7 +48,7 @@ export class SearchHomePageComponent implements OnInit {
     console.log(a);
 
   }
- 
+ /*
   RouterNavigateToCars(a: any): void {
     console.log(a);
     var searchInfo = this.form.formData;
@@ -58,8 +59,13 @@ export class SearchHomePageComponent implements OnInit {
 
     
 
+  }*/
+  parseDate(input) {
+    var parts = input.match(/(\d+)/g);
+    // new Date(year, month [, date [, hours[, minutes[, seconds[, ms]]]]])
+    return new Date(parts[0], parts[1]-1, parts[2]); // months are 0-based
   }
-  
+
   onFormSubmit(userForm: NgForm) {
 
 
@@ -69,14 +75,27 @@ export class SearchHomePageComponent implements OnInit {
 
     var x = this.form.formData;
 
+ 
 
 
-    x.pickUpDate =  pickUpDate;
-    x.returnDate = returnDate;
+
+    x.pickUpDate =  this.parseDate(pickUpDate);
+    x.returnDate = this.parseDate(returnDate);
     x.branch = branch;
 
+
     console.log(x.pickUpDate, x.branch , x.returnDate );
-    console.log('Form Submitted:' + userForm.submitted);
+    //console.log('Form Submitted:' + userForm.submitted);
+    //console.log(x.returnDate.constructor.name);
+
+    //console.log(this.form.formData.returnDate   );
+
+    var diffMillisec = this.form.formData.returnDate.getTime() - this.form.formData.pickUpDate.getTime();
+
+
+    this.form.formData.totalNumbweOfDays = Math.round(Math.abs(diffMillisec/(1000*60*60*24)));
+
+   
 
     this.router.navigate(['/rentCar']);
 

@@ -1,0 +1,43 @@
+<p>
+  Your Final Order Details
+</p>
+
+<div class="row">
+  <div class="col-sm">
+    <img class="card-img-top rounded mx-auto d-block" height="180" width="250"
+      src="data:image/png;base64,{{form.formData.carToRent.image}}" alt="Card image cap">
+  </div>
+
+
+
+  <div class="card" style="width: 18rem;">
+
+
+
+    <div class="col-sm">
+      <div class="card-body">
+        <ul class="list-group list-group-flush text-center">
+          <li class="list-group-item"> Model: {{  form.formData.carToRent.carTypeObject.model  }}</li>
+          <li class="list-group-item"> Gear Type: {{  form.formData.carToRent.carTypeObject.gearType  }}</li>
+          <li class="list-group-item"> Manufacturer: {{  form.formData.carToRent.carTypeObject.manufacturer  }}</li>
+          <li class="list-group-item list-group-item-info"> Daily Cost:
+            {{  form.formData.carToRent.carTypeObject.dailyCost  }}</li>
+          <li class="list-group-item list-group-item-info"> Daily Penalty:
+            {{  form.formData.carToRent.carTypeObject.dailyPenalty  }}</li>
+          <li class="list-group-item list-group-item-danger"> Number Of Rent Days {{ form.formData.totalNumbweOfDays }}
+          </li>
+          <li class="list-group-item list-group-item-danger"> Order Total Cost {{ form.formData.totalRentCost }} </li>
+          <li class="list-group-item list-group-item-danger"> Order Total Penalty {{ form.formData.totalPenaltyCost }}
+          </li>
+
+
+
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<button> Confirm and Continue </button>
