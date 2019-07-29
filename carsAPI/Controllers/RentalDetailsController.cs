@@ -10,7 +10,7 @@ using System.Web.Http;
 
 namespace carsAPI.Controllers
 {
-    
+
 
 
     [RoutePrefix("api/RentalDetails")]
@@ -18,7 +18,7 @@ namespace carsAPI.Controllers
     {
         string username = Thread.CurrentPrincipal.Identity.Name;
 
-        
+
         [HttpGet]
         [Route("find")]
         public HttpResponseMessage GetAll()
@@ -72,38 +72,34 @@ namespace carsAPI.Controllers
         {
             using (var db = new rentcarsEntities())
             {
-                if (BasicAuthenticationAttribute.GlobalIsAdmin)
+
+                try
                 {
-                    try
+                    var response = new HttpResponseMessage(HttpStatusCode.OK);
+                    var rentalDetails = new carRentalDetail()
                     {
-                        var response = new HttpResponseMessage(HttpStatusCode.OK);
-                        var rentalDetails = new carRentalDetail()
-                        {
-                            id = rentalDetailsEntity.id,
-                            startDate = rentalDetailsEntity.startDate,
-                            returnDate = rentalDetailsEntity.returnDate,
-                            actualReturnDate = rentalDetailsEntity.actualReturnDate,
-                            userId = rentalDetailsEntity.userId,
-                            carNumber = rentalDetailsEntity.carNumber,
-                        };
+                        id = rentalDetailsEntity.id,
+                        startDate = rentalDetailsEntity.startDate,
+                        returnDate = rentalDetailsEntity.returnDate,
+                        actualReturnDate = rentalDetailsEntity.actualReturnDate,
+                        userId = rentalDetailsEntity.userId,
+                        carNumber = rentalDetailsEntity.carNumber,
+                    };
 
-                        db.carRentalDetails.Add(rentalDetails);
-                        db.SaveChanges();
-                        return response;
+                    db.carRentalDetails.Add(rentalDetails);
+                    db.SaveChanges();
+                    return response;
 
-                    }
-                    catch
-                    {
-
-                        return new HttpResponseMessage(HttpStatusCode.BadRequest);
-                    }
                 }
-                else
+                catch
                 {
+
                     return new HttpResponseMessage(HttpStatusCode.BadRequest);
                 }
             }
+
         }
+
 
         [HttpPut]
         [Route("update")]

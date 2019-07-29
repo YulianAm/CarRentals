@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'home', component: HomeComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'rentCar', component:  CarRentFormComponent},
   { path: 'searchHome', component:  SearchHomePageComponent},
   { path: 'finalForm', component:  FinalRentFormComponent}

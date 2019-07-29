@@ -1,90 +1,55 @@
-<div class="container align-self-center" style="padding-top:60px;">
-  <img src="assets\img\cars\logo.jpg" width=100% height=100%>
+<!-- <div class="container align-self-center" style="padding-top:60px;">
+  <img src="assets\img\cars\logo.jpg" width=100% height=100%> -->
+<div class="container">
+  <div class="bg" style="width:100%;height:100%;">
+    <div class="search">
+     <h2 style="text-align:center">
+      welcome to YY car rental services
+    </h2>
 
+    <h3 style="text-align:center">
+      please choose your preffered pickup time and location
+    </h3>
 
+  <form #userForm="ngForm" ngNativeValidate (ngSubmit)="onFormSubmit(userForm)">
+     <div class="panel panel-primary"> 
+      <div class="panel-heading">
+        <h3 class="panel-title" style="text-align:center"> Please Choose Dates & Pick Up Location </h3>
+      </div>
+      <div class="panel-body">
+        <div class="form-group " [class.has-success]="dateControl.valid"
+          [class.has-error]="dateControl.invalid && dateControl.touched">
+          <label for="pickUpDate"> Pick Up Date </label>
+          <input #dateControl="ngModel" required id="pickUpDate" name="pickUpDate" [(ngModel)]="pickUpDate" type="date"
+            class="form-control">
+          <span class="help-block" *ngIf="dateControl.invalid && dateControl.touched">
+            PickUp Date is required
+          </span>
+        </div>
 
+        <div class="form-group " [class.has-success]="dateControl.valid"
+          [class.has-error]="dateControl.invalid && dateControl.touched">
+          <label for="returnDate">Return Date</label>
+          <input #dateControl="ngModel" required id="returnDate" name="returnDate" [(ngModel)]="returnDate" type="date"
+            class="form-control">
+          <span class="help-block" *ngIf="dateControl.invalid && dateControl.touched">
+            DropOff Date is required
+          </span>
+        </div>
+        
 
-  <h2 style="text-align:center">
-    welcome to YY car rental services
-  </h2>
-
-  <h3 style="text-align:center">
-    please choose your preffered pickup time and location
-  </h3>
+        <div class="form-group">
+          <label for="power">Pick up Location</label>
+          <select class="form-control" id="power" required [(ngModel)]="this.branchService" name="branch">
+            <option *ngFor="let branch of branches" [value]="branch.BranchName">{{branch.BranchName}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="panel-footer">
+        <button type="submit" class="btn btn-primary" > Continue  </button>                           
+      </div>
+    </div>
+    </form> 
+    </div>
+   </div>
 </div>
-
-<!--
-
-<form #userForm="ngForm" >
--->
-<form #userForm="ngForm" ngNativeValidate (ngSubmit)="onFormSubmit(userForm)">
-
-  <div class="panel panel-primary">
-
-    <div class="panel-heading">
-      <h3 class="panel-title" style="text-align:center"> Please Choose Dates & Pick Up Location </h3>
-    </div>
-
-    <div class="panel-body">
-
-
-
-      <div class="form-group " [class.has-success]="dateControl.valid"
-        [class.has-error]="dateControl.invalid && dateControl.touched">
-        <label for="pickUpDate"> Pick Up Date </label>
-        <input #dateControl="ngModel" required id="pickUpDate" name="pickUpDate" [(ngModel)]="pickUpDate" type="date"
-          class="form-control">
-        <span class="help-block" *ngIf="dateControl.invalid && dateControl.touched">
-          PickUp Date is required
-        </span>
-      </div>
-
-      <div class="form-group " [class.has-success]="dateControl.valid"
-        [class.has-error]="dateControl.invalid && dateControl.touched">
-        <label for="returnDate">Return Date</label>
-        <input #dateControl="ngModel" required id="returnDate" name="returnDate" [(ngModel)]="returnDate" type="date"
-          class="form-control">
-        <span class="help-block" *ngIf="dateControl.invalid && dateControl.touched">
-          DropOff Date is required
-        </span>
-      </div>
-      <!-- -->
-
-      <div class="form-group">
-        <label for="power">Pick up Location</label>
-        <select class="form-control" id="power" required [(ngModel)]="this.branchService" name="branch">
-          <option *ngFor="let branch of branches" [value]="branch.BranchName">{{branch.BranchName}}</option>
-        </select>
-      </div>
-
-
-
-
-
-
-    </div>
-
-
-  </div>
-
-
-  <div class="panel-footer">
-
-
-
-    <!--
-    
-     <button type="button" [disabled]="!search.form.valid" class="btn btn-warning scbtn-width" routerLink="/rentCar"
-      [queryParams]="{pickup_place:branch,  pickup_date:pickUpDate,dropoff_date:returnDate}">  SEARCH NOW
-    </button>
-    -->
-   
-    <button type="submit" class="btn btn-primary" > Continue  </button>                  
-                              
-    
-  </div>
-
-
-
-
-</form>

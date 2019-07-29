@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TagContentType } from '@angular/compiler';
 import { User } from '../models/user';
 import { baseUrl } from 'src/environments/environment';
+import { UserName } from '../models/userName';
 
 @Injectable({
   providedIn: 'root'
@@ -60,6 +61,20 @@ export class UsersService {
 
     return this.http.post<User>(baseUrl + urlUsers, user, {headers:{'Content-Type': 'application/json'}}).pipe(
       tap(_ => console.log(`created user id=${user.firstName}`))
+    );
+
+    
+  }
+
+  getUserId (username: UserName): Observable<any> {
+    debugger;
+
+    const urlUsers: string = 'common/findUserId/';
+    
+ 
+
+    return this.http.post<User>(baseUrl + urlUsers, username , {headers:{'Content-Type': 'application/json'}}).pipe(
+      tap(_ => console.log(`got user id=${username}`))
     );
 
     

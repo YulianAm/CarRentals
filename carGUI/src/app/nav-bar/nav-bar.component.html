@@ -1,4 +1,31 @@
-<div *ngIf="nav.visible" class="container">
+<div class="container">
+<nav class="navbar navbar-default">
+  <div class="navbar-collapse collapse">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">
+        <img src="assets/img/cars/rent-a-car.jpg" class="img-responsive logo">        
+      </a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li>
+        <a type="button" class="btn btn-outline-primary" routerLink="/searchHome">Pick date and location</a>
+      </li>
+    </ul>
+    
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+      <a type="button" class="btn btn-outline-primary" routerLink="/createUser">Register</a>
+      </li>
+      <li>
+      <a type="button" class="btn btn-outline-primary" routerLink="/login">Login</a>
+        </li>
+    </ul>
+  </div>
+</nav>
+</div>
+
+<!-- <div *ngIf="nav.visible" class="container">
     <nav class="navbar navbar-blue">
         <div class="container-fluid">
           <div class="navbar-header">
@@ -19,7 +46,7 @@
           
         </div>
       </nav>
-    </div>
+    </div> -->
     
     
     <!--<router-outlet></router-outlet>

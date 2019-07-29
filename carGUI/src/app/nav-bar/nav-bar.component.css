@@ -1,0 +1,11 @@
+.navbar-brand{
+    margin:0;
+    padding: 0;
+}
+
+.logo{
+    height: 50px;
+    margin-left: 3px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
