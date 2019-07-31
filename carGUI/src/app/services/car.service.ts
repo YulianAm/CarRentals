@@ -30,6 +30,21 @@ export class CarsService {
       
   }
 
+  getCarById (carNumber: string): Observable<Car> {
+    const urlCars: string = 'cars/findById'; 
+
+    return this.http.get<Car>(baseUrl + urlCars + carNumber)
+      .pipe(
+        tap(_ => console.log('fetched cars' )) //,
+        //catchError(this.handleError)
+        
+      );
+
+      
+
+      
+  }
+
 
   
   deleteCar (car: Car ): Observable<Car> {
@@ -50,6 +65,17 @@ export class CarsService {
       tap(_ => console.log(`updated care number=${car.carNumber}`))
     );
   }
+
+  updateIsAvailableById (carNumber: string): Observable<any> {
+    debugger;
+
+    const urlCars: string = 'cars/updateIsAvailableById/';
+
+    return this.http.put(baseUrl + urlCars + carNumber, carNumber).pipe(
+      tap(_ => console.log(`updated care number=${carNumber}`))
+    );
+  }
+
 
   CreateCar (car: Car): Observable<Car> {
 

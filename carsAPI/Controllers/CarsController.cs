@@ -50,7 +50,7 @@ namespace carsAPI.Controllers
 
                     var response = new HttpResponseMessage(HttpStatusCode.OK);
                     response.Content = new StringContent(JsonConvert.SerializeObject(carsEntities));
-                    response.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("applicatoin/json");
+                    response.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
                     return response;
 
                 }
@@ -67,9 +67,36 @@ namespace carsAPI.Controllers
 
 
         // GET: api/Cars/5
-        public string Get(int id)
+        [HttpGet]
+        [Route("findById/{carNumber}")]
+        public HttpResponseMessage ChangeIsAvailableById(string carNumber)
         {
-            return "value";
+            using (var db = new rentcarsEntities())
+            {
+
+                try
+                {
+                    var response = new HttpResponseMessage(HttpStatusCode.OK);
+                    var carsEntitiesOriginal = db.cars.ToList();
+
+                    var currentCar = carsEntitiesOriginal.Where(p => p.carNumber == carNumber).FirstOrDefault() ;
+
+                    
+
+                
+                    response.Content = new StringContent(JsonConvert.SerializeObject(currentCar));
+                    response.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+
+                    return response;
+                }
+                catch
+                {
+
+                    return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                }
+
+
+            }
         }
 
         // POST: api/Cars
@@ -148,6 +175,36 @@ namespace carsAPI.Controllers
                 {
                     return new HttpResponseMessage(HttpStatusCode.BadRequest);
                 }
+            }
+        }
+
+        
+        [HttpPut]
+        [Route("updateIsAvailableById/{carNumber}")]
+        public HttpResponseMessage updateIsAvailableById(string carNumber )
+        {
+            using (var db = new rentcarsEntities())
+            {
+                
+                    try
+                    {
+                        var response = new HttpResponseMessage(HttpStatusCode.OK);
+                        var currentCar = db.cars.SingleOrDefault(p => p.carNumber == carNumber);
+
+
+
+                        currentCar.isAvailable = false;
+                        
+                        
+                        db.SaveChanges();
+                        return response;
+                    }
+                    catch
+                    {
+
+                        return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                    }
+                
             }
         }
 

@@ -12,7 +12,7 @@ namespace carsAPI.Controllers
 {
 
 
-
+    [BasicAuthentication]
     [RoutePrefix("api/RentalDetails")]
     public class RentalDetailsController : ApiController
     {
@@ -68,7 +68,7 @@ namespace carsAPI.Controllers
 
         [HttpPost]
         [Route("create")]
-        public HttpResponseMessage create(carRentalDetail rentalDetailsEntity)
+        public HttpResponseMessage create(rentalDetailEntity rentalDetailsEntity)
         {
             using (var db = new rentcarsEntities())
             {
@@ -78,12 +78,13 @@ namespace carsAPI.Controllers
                     var response = new HttpResponseMessage(HttpStatusCode.OK);
                     var rentalDetails = new carRentalDetail()
                     {
-                        id = rentalDetailsEntity.id,
+                        //id = rentalDetailsEntity.id,
                         startDate = rentalDetailsEntity.startDate,
                         returnDate = rentalDetailsEntity.returnDate,
                         actualReturnDate = rentalDetailsEntity.actualReturnDate,
                         userId = rentalDetailsEntity.userId,
                         carNumber = rentalDetailsEntity.carNumber,
+                        isActive = rentalDetailsEntity.isActive
                     };
 
                     db.carRentalDetails.Add(rentalDetails);

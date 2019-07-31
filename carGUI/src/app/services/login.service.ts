@@ -74,8 +74,9 @@ export class LoginService {
     return UserTypeEnum.Unknown;
   }*/
 
-  login(userData: credentials, userType: number) {
+  login(userData: credentials, userType: number, userId: number) {
     userData.userType = userType;
+    userData.userId = userId;
     console.log("local stroage set");
 
     localStorage.setItem("user", JSON.stringify(userData));

@@ -13,6 +13,7 @@ namespace carsAPI.Models
         public DateTime actualReturnDate { get; set; }
         public int userId { get; set; }
         public string carNumber { get; set; }
+        public Boolean isActive { get; set; }
 
 
     }

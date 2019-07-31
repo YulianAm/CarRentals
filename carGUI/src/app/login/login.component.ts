@@ -52,9 +52,10 @@ export class LoginComponent {
 
         if(data.Status=="success admin"  )    
         {
+          
           //debugger;
           this.userType = 1;
-          this.LoginService.login(this.model, this.userType);
+          this.LoginService.login(this.model, this.userType, data.LoginUserId);
           //this.model.userType = "admin";
           this.nav.show();       
           this.router.navigate(['/admin']);    
@@ -66,7 +67,7 @@ export class LoginComponent {
         {
           //debugger;
           this.userType = 2;
-          this.LoginService.login(this.model, this.userType);
+          this.LoginService.login(this.model, this.userType,  data.LoginUserId);
           //this.model.userType = "user";
           this.nav.show();       
           this.router.navigate(['/home']);    
@@ -79,7 +80,7 @@ export class LoginComponent {
         else{   
           //debugger; 
           this.userType = 3;
-          this.LoginService.login(this.model, this.userType);
+          this.LoginService.login(this.model, this.userType,  null);
 
 
           this.errorMessage = data.Message;    
@@ -97,7 +98,7 @@ export class LoginComponent {
   };    
   
   clickNotRgistered() {
-    this.LoginService.login(this.model, 3);
+    this.LoginService.login(this.model, 3, null);
           
   }
 

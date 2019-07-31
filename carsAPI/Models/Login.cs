@@ -10,7 +10,9 @@ namespace carsAPI.Models
         
             public string userName { set; get; }
             public string userPassword { set; get; }
-       
+            public int userId { set; get; }
+ 
+
     }
     public class Registration : user { }
 }

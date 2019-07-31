@@ -66,19 +66,19 @@ export class UsersService {
     
   }
 
+  /*
   getUserId (username: UserName): Observable<any> {
-    debugger;
+    
 
     const urlUsers: string = 'common/findUserId/';
     
  
 
-    return this.http.post<User>(baseUrl + urlUsers, username , {headers:{'Content-Type': 'application/json'}}).pipe(
-      tap(_ => console.log(`got user id=${username}`))
+    return this.http.post<UserName>(baseUrl + urlUsers, username , {headers:{'Content-Type': 'application/json'}}).pipe(
+      tap(_ => console.log(`got user id for username=${username.un }`))
     );
 
-    
-  }
+  }*/
 
 
   handleError(): any { console.log("error");}

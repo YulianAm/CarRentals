@@ -64,10 +64,19 @@ namespace carsAPI.Controllers
         {
             using (var db = new rentcarsEntities() ) {
                 user currentUser;
+                
+
+                
 
                 try
                 {
-                    currentUser = db.users.Where(x => x.userName == Lg.userName && x.userPassword == Lg.userPassword).FirstOrDefault();
+                    currentUser = db.users.Where( x => x.userName == Lg.userName && x.userPassword == Lg.userPassword  )
+          
+                        .FirstOrDefault() ;
+
+                    var userId = currentUser.id;
+
+
 
                     if (currentUser != null)
                     {
@@ -75,20 +84,20 @@ namespace carsAPI.Controllers
                         if (currentUser != null && currentUser.isAdmin == true)
                         {
 
-                            return new Response { Status = "success admin", Message = "admin" };
+                            return new Response { Status = "success admin", Message = "admin" , LoginUserId = userId };
                         }
 
                         else if (currentUser != null && currentUser.isAdmin == false)
                         {
-                            return new Response { Status = "success user", Message = "user" };
+                            return new Response { Status = "success user", Message = "user" , LoginUserId = userId };
                         }
                         else
-                            return new Response { Status = "fail", Message = "not valid user | pass" };
+                            return new Response { Status = "fail", Message = "not valid user | pass"};
 
 
 
                     }
-                    else { return new Response { Status = "failed", Message = "user or pass incorrect" }; }
+                    else { return new Response { Status = "failed", Message = "user or pass incorrect"  }; }
 
                 }
                 catch (Exception)

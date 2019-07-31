@@ -9,6 +9,8 @@ import { LoginService } from '../services/login.service';
 import { User } from '../models/user';
 import { UsersService } from '../services/users.service';
 import { UserName } from '../models/userName';
+import { credentials } from '../models/credentials';
+import { UserAuthentication } from '../services/user.authontication';
 
 @Component({
   selector: 'app-final-rent-form',
@@ -20,6 +22,8 @@ carToRent: Car;
 numberOfRentDays: number;
 totalCost: number;
 totalPenalty: number;
+localCredentials: credentials;
+newOrder: Order = new Order();
 
 
   constructor(
@@ -28,7 +32,8 @@ totalPenalty: number;
     private form: SearchFormDataService,
     private orderService: OrdersService,
     private loginService: LoginService,
-    private userService: UsersService
+    private userService: UsersService,
+    private userAuthentication: UserAuthentication
 
 
   ) { }
@@ -50,31 +55,46 @@ totalPenalty: number;
   }
 
   onSubmit() {
-    var newOrder  = new Order();
-    var currentUser: User = new User();
-    var username = new UserName();
-
-    currentUser =  this.loginService.getCurrentUser();
     
-    newOrder.startDate = this.form.formData.pickUpDate;
-    newOrder.endDate = this.form.formData.returnDate;
+    
+    //var currentUser: User = new User();
+    //var username = new UserName();
+    this.localCredentials = this.userAuthentication.getCurrentUser();
+    //console.log("user id is:" + this.localCredentials.userId);
+    
+    
 
-    username.un = currentUser.userName;
+ 
+    
 
-    //newOrder.userId = +this.userService.getUserId(username) ;
-    newOrder.userId = 1;
-    newOrder.carNumber = this.form.formData.carToRent.carNumber;
-    newOrder.isActive = true;
-    newOrder.actualReturnDate = null;
-    console.log("order submitted to service" + newOrder);
-    debugger;
+    
+    this.newOrder.startDate = this.form.formData.pickUpDate;
+    this.newOrder.returnDate = this.form.formData.returnDate;
+    this.newOrder.carNumber = this.form.formData.carToRent.carNumber;
+    this.newOrder.isActive = true;
+    this.newOrder.actualReturnDate = this.form.formData.returnDate;
+    this.newOrder.userId = this.localCredentials.userId;
+    
+
+
+    console.log("order submitted to service" + this.newOrder);
+    
 
      
 
      
  
-    this.orderService.CreateOrder(newOrder);
+    this.orderService.CreateOrder(this.newOrder).subscribe();
+    this.carService.updateIsAvailableById(this.newOrder.carNumber).subscribe();
+
+
+    //var orderedCar  = this.carService.getCarById( this.newOrder.carNumber).subscribe();
+
+    //console.log(orderedCar);
     
+    
+    
+
   }
 
 

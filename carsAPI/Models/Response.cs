@@ -5,11 +5,12 @@ using System.Web;
 
 namespace carsAPI.Models
 {
-    
-        public class Response
-        {
-            public string Status { set; get; }
-            public string Message { set; get; }
-        }
-    
+
+    public class Response
+    {
+        public string Status { set; get; }
+        public string Message { set; get; }
+        public int LoginUserId { set; get; }
+    }
+
 }

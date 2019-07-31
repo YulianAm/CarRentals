@@ -2,7 +2,7 @@
 export class Order {
     id?: number;
     startDate: Date;
-    endDate: Date;
+    returnDate: Date;
     actualReturnDate?: Date;
     userId: number;
     carNumber: string;
