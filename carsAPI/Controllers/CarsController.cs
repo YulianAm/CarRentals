@@ -178,7 +178,7 @@ namespace carsAPI.Controllers
             }
         }
 
-        
+        [BasicAuthentication]
         [HttpPut]
         [Route("updateIsAvailableById/{carNumber}")]
         public HttpResponseMessage updateIsAvailableById(string carNumber )
