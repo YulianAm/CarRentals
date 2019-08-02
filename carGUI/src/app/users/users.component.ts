@@ -28,7 +28,7 @@ export class UsersComponent implements OnInit {
 
   ngOnInit() {
     this.Get();
-    //this.nav.show();
+    this.nav.show();
  
 
 

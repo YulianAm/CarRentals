@@ -11,6 +11,7 @@ import { baseUrl } from 'src/environments/environment';
 export class CarsService {
   car: Car []=[] ;
   carToRent: Car;
+  carToEdit: Car;
 
   
   constructor(private http: HttpClient) {}

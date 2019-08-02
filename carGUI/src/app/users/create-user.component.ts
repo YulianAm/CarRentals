@@ -38,8 +38,8 @@ export class CreateUserComponent implements OnInit {
 
   ngOnInit() {
     this.Get();
-    //this.nav.show();
-    //this.user = this.usersService.formData;
+    this.nav.show();
+    this.user = this.usersService.formData;
     console.log(this.nav.SignUp);
   }
 

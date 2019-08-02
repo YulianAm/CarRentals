@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { CarRentFormComponent } from './car-rent-form/car-rent-form.component';
 import { SearchHomePageComponent } from './search-home-page/search-home-page.component';
 import { FinalRentFormComponent } from './final-rent-form/final-rent-form.component';
+import { EditCarComponent } from './cars/edit-car.component';
 
 
 
@@ -24,7 +25,10 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'rentCar', component:  CarRentFormComponent},
   { path: 'searchHome', component:  SearchHomePageComponent},
-  { path: 'finalForm', component:  FinalRentFormComponent}
+  { path: 'finalForm', component:  FinalRentFormComponent},
+  { path: 'editCar', component:  EditCarComponent}
+ 
+
   
 ];
 //

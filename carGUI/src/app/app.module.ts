@@ -22,7 +22,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './services/interceptor';
 import { ErrorInterceptor } from './services/error.interceptor';
 
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 // search module
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { CarRentFormComponent } from './car-rent-form/car-rent-form.component';
@@ -32,6 +32,7 @@ import { searchFormStage1 } from './models/searchFormStage1';
 import { SearchFormDataService } from './services/search-form-data.service';
 import { UniquePipe } from './pipes/unique.pipe';
 import { FinalRentFormComponent } from './final-rent-form/final-rent-form.component';
+import { EditCarComponent } from './cars/edit-car.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { FinalRentFormComponent } from './final-rent-form/final-rent-form.compon
     CarRentFormComponent,
     SearchHomePageComponent,
     UniquePipe,
-    FinalRentFormComponent
+    FinalRentFormComponent,
+    EditCarComponent
     
     
   ],
@@ -64,6 +66,7 @@ import { FinalRentFormComponent } from './final-rent-form/final-rent-form.compon
     FormsModule,
     BsDatepickerModule.forRoot(),
     Ng2SearchPipeModule,
+    NgbModule.forRoot()
     
     
     

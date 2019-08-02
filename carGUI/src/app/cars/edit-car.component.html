@@ -1,0 +1,59 @@
+
+
+<div >
+<form #carForm="ngForm" ngNativeValidate (ngSubmit)="Edit(car)" >
+    <div  class = "panel panel-primary" >
+    
+        <div class="panel-heading">
+          <h3 class="panel-title"> Edit Car  </h3>
+        </div>
+    
+        <div class="panel-body">
+    
+          <div class="form-group"  [class.has-success]="carNumberControl.valid" [class.has-error]="carNumberControl.invalid && carNumberControl.touched">
+            <label class="control-label" for="carNumber">Car Number </label>
+            <input  #carNumberControl="ngModel" required id="carNumber" name="carNumber" [(ngModel)]="car.carNumber" type="text" class="form-control">
+            <span class="help-block" *ngIf="carNumberControl.invalid && carNumberControl.touched">
+              Car Number is required
+              </span>
+          </div>
+          
+          
+    
+          
+    
+    
+              <div class="form-group" [class.has-success]="carMileageControl.valid" [class.has-error]="carMileageControl.invalid && carMileageControl.touched">
+                  <label for="mileage">Car mileage </label>
+                  <input #carMileageControl="ngModel" required id="mileage" name="mileage" [(ngModel)]="car.mileage"  type="text" class="form-control">
+                  <span class="help-block" *ngIf="carMileageControl.invalid && carMileageControl.touched">
+                    Car mileage is required
+                  </span>
+                </div>
+    
+                
+    
+          
+    
+    
+         <div class="form-check">
+          <label for="isAvailable">Is Available?  </label> <br>
+          <input id="isAvailable" name="isAvailable" [(ngModel)]="car.isAvailable"  type="checkbox" class="form-check-input">
+        </div>
+  
+        <div class="form-check">
+          <label for="isUndamaged">Is Undamaged?  </label> <br>
+          <input id="isUndamaged" name="isUndamaged" [(ngModel)]="car.isUndamaged"  type="checkbox" class="form-check-input">
+        </div>
+        
+        
+        
+      </div>
+    
+          <div class="panel-footer">
+              <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+    </div>
+    
+    </form>
+  </div>
