@@ -143,7 +143,7 @@ namespace carsAPI.Controllers
         }
 
         // PUT: api/Cars/5
-        [BasicAuthentication]
+        //[BasicAuthentication]
         [HttpPut]
         [Route("update")]
         public HttpResponseMessage update(carEntity car)
@@ -156,12 +156,12 @@ namespace carsAPI.Controllers
                     {
                         var response = new HttpResponseMessage(HttpStatusCode.OK);
                         var currentCar = db.cars.SingleOrDefault(p => p.carNumber == car.carNumber);
-                        currentCar.carNumber = car.carNumber;
-                        currentCar.carType = car.carType;
+                        //currentCar.carNumber = car.carNumber;
+                        //currentCar.carType = car.carType;
                         currentCar.isAvailable = car.isAvailable;
                         currentCar.isUndamaged = car.isUndamaged;
                         //currentCar.branch = car.branch;
-                        currentCar.mileage = car.mileage;
+                        //currentCar.mileage = car.mileage;
                         db.SaveChanges();
                         return response;
                     }

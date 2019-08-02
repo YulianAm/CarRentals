@@ -58,11 +58,13 @@ export class CarsService {
       );
   }
 
-  updateCar (car: Car): Observable<any> {
+  updateCar (): Observable<any> {
+    var car = this.carToEdit;
 
     const urlCars: string = 'cars/update/';
+    debugger;
 
-    return this.http.put(baseUrl + urlCars, Car).pipe(
+    return this.http.put(baseUrl + urlCars, car).pipe(
       tap(_ => console.log(`updated care number=${car.carNumber}`))
     );
   }

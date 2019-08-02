@@ -37,7 +37,7 @@ export class EditCarComponent implements OnInit {
 
 EditCar(car: Car) {
 
-  this.carSerivce.updateCar(car).subscribe();
+  this.carSerivce.updateCar().subscribe();
 
 
 }

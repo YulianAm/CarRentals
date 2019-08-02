@@ -48,7 +48,7 @@ Delete(car: Car): void {
     this.carService.deleteCar(car).subscribe();}
 }
 
-Edit(car: Car): void {
+/*Edit(car: Car): void {
   //this.cars = this.cars.filter(h => h !== car);
   //this.carService.updateCar(car).subscribe();
   console.log(this.carService.carToEdit = car);
@@ -56,16 +56,23 @@ Edit(car: Car): void {
   
   this.router.navigate(['/editCar']);
 
-}
+}*/
 
 Edit2(car: Car): void {
+  document.documentElement.scrollTop = 0;
   this.editable = true;
+
   //this.cars = this.cars.filter(h => h !== car);
   //this.carService.updateCar(car).subscribe();
-  this.car = car;
-
-  console.log(this.carService.carToEdit = car);
   this.carService.carToEdit = car;
+  this.car = car;
+  console.log( this.carService.carToEdit);
+
+  //console.log(this.carService.carToEdit = car);
+  //this.carService.carToEdit = car;
+  
+  
+
   
  // this.router.navigate(['/editCar']);
 
@@ -73,6 +80,12 @@ Edit2(car: Car): void {
 
 noEdit() {
   this.editable = false;
+}
+
+SendToEditService(car: Car) {
+  this.carService.updateCar();
+  console.log("subitted to server");
+
 }
 
 }
