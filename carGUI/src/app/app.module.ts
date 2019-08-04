@@ -23,7 +23,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './services/interceptor';
 import { ErrorInterceptor } from './services/error.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import {NgPipesModule} from 'ngx-pipes';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 // search module
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
@@ -83,6 +83,7 @@ import { CreateOrderComponent } from './orders/create-order.component';
       closeButton: true,  
         
     })  ,
+    NgPipesModule
     
     
     

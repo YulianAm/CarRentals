@@ -70,7 +70,7 @@ export class CarsService {
   }
 
   updateIsAvailableById (carNumber: string): Observable<any> {
-    debugger;
+   // debugger;
 
     const urlCars: string = 'cars/updateIsAvailableById/';
 

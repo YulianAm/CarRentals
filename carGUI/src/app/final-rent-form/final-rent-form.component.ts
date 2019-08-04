@@ -86,7 +86,7 @@ newOrder: Order = new Order();
  
     this.orderService.CreateOrder(this.newOrder).subscribe();
     this.carService.updateIsAvailableById(this.newOrder.carNumber).subscribe();
-
+alert("new car order sumbitted!")
 
     //var orderedCar  = this.carService.getCarById( this.newOrder.carNumber).subscribe();
 

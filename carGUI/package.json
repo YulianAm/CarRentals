@@ -26,6 +26,7 @@
     "lodash": "^4.17.15",
     "ng2-search-filter": "^0.5.1",
     "ngx-bootstrap": "^4.3.0",
+    "ngx-pipes": "^2.5.6",
     "ngx-toastr": "^10.0.4",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",

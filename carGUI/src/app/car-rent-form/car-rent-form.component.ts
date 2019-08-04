@@ -21,6 +21,9 @@ export class CarRentFormComponent implements OnInit {
 
  cars: Car[];
 
+
+
+
  uniqueTypes: CarType[];
 
 
@@ -39,7 +42,9 @@ export class CarRentFormComponent implements OnInit {
     
     ) { }
 
+
   ngOnInit() {
+    
 
     
 
@@ -60,6 +65,8 @@ export class CarRentFormComponent implements OnInit {
 
     
   }
+
+ 
 
   Get(): void {
     this.carService.getCars()
