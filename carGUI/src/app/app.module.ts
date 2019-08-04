@@ -37,6 +37,8 @@ import { FinalRentFormComponent } from './final-rent-form/final-rent-form.compon
 import { EditCarComponent } from './cars/edit-car.component';
 import { OrdersComponent } from './orders/orders.component';
 import { CreateOrderComponent } from './orders/create-order.component';
+import { CarTypesComponent } from './carTypes/car-types.component';
+import { CreateCarTypeComponent } from './carTypes/create-car-type.component';
 
 
 
@@ -60,7 +62,9 @@ import { CreateOrderComponent } from './orders/create-order.component';
     FinalRentFormComponent,
     EditCarComponent,
     OrdersComponent,
-    CreateOrderComponent
+    CreateOrderComponent,
+    CarTypesComponent,
+    CreateCarTypeComponent
     
 
     

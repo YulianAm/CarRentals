@@ -52,14 +52,9 @@ namespace carsAPI.Controllers
             }
         }
 
-        // GET: api/carTypes/5
-        [HttpGet]
-        [Route("findId")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        
 
+        [BasicAuthentication]
         [HttpPost]
         [Route("create")]
         public HttpResponseMessage create(carTypeEntity typeEntity)
@@ -101,6 +96,7 @@ namespace carsAPI.Controllers
             }
         }
 
+        [BasicAuthentication]
         [HttpPut]
         [Route("update")]
         public HttpResponseMessage update(carTypeEntity typeEntity)
@@ -138,6 +134,7 @@ namespace carsAPI.Controllers
             }
         }
 
+        [BasicAuthentication]
         [HttpDelete]
         [Route("delete/{carTypeId}")]
         public HttpResponseMessage Delete(int carTypeId)

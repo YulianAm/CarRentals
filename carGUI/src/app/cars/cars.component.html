@@ -89,13 +89,18 @@
 
 
 
+<div class="container">
+
+<h3>Filter by car number</h3>
+
+<input type="text"   class="form-control" [(ngModel)]="term" >
+</div>
 
 
+<br>
+<br>
 
-
-
-
-<div class="panel panel-primary" *ngFor=" let car of cars ; index as i">
+<div class="panel panel-primary" *ngFor=" let car of cars | filter:term ; index as i ">
     <div class="panel-heading">
         <h3 class="panel-title"># {{ i+1 }} | {{car.carNumber}} {{car.region}} | </h3>
     </div>

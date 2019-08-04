@@ -25,7 +25,43 @@ export class CarTypesService {
       
   }
 
-  
-  
+  deleteCarType (type: CarType ): Observable<CarType> {
 
+    const urlCars: string  = 'carTypes/delete/' + type.id;
+
+    return this.http.delete<CarType>(baseUrl + urlCars).pipe(
+      tap(_ => console.log(`deleted cartype id=${type.id}`)),
+      //catchError(this.handleError<Car>('deleteHero'))
+      );
+  }
+
+  updateCarType (type: CarType): Observable<any> {
+    //var car = this.carToEdit;
+
+    const urlCars: string = 'carTypes/update/';
+    
+
+    return this.http.put(baseUrl + urlCars, type).pipe(
+      tap(_ => console.log(`updated cartype id=${type.id}`))
+    );
+  }
+
+  
+  
+  CreateCarType (type: CarType): Observable<CarType> {
+    //debugger;
+
+    const urlCars: string = 'carTypes/create/';
+    
+ 
+
+    return this.http.post<CarType>(baseUrl + urlCars, type, {headers:{'Content-Type': 'application/json'}}).pipe(
+      tap(_ => console.log(`created cartype id=${type.id}`))
+    );
+
+    
+  }
+  handleError(): void { console.log("error");}
+  
 }
+

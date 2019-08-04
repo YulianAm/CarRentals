@@ -1,0 +1,100 @@
+
+<form #carForm="ngForm" ngNativeValidate (ngSubmit)="Create(car)" >
+    <div class = "panel panel-primary" >
+    
+        <div class="panel-heading">
+          <h3 class="panel-title"> Create Car Type </h3>
+        </div>
+    
+        <div class="panel-body">
+    
+          
+            
+          
+          
+    
+          
+
+            <div class="form-group" [class.has-success]="manufacturer.valid"
+            [class.has-error]="manufacturer.invalid && manufacturer.touched">
+            <label for="manufacturer">Car Manufacturer </label>
+            <input #manufacturer="ngModel" required id="manufacturer" name="manufacturer" [(ngModel)]="car.manufacturer"
+                type="text" class="form-control">
+            <span class="help-block" *ngIf="manufacturer.invalid && manufacturer.touched">
+                Car Manufacturer is required
+            </span>
+        </div>
+
+        <div class="form-group" [class.has-success]="model.valid"
+        [class.has-error]="model.invalid && model.touched">
+        <label for="model">Car model </label>
+        <input #model="ngModel" required id="model" name="model" [(ngModel)]="car.model"
+            type="text" class="form-control">
+        <span class="help-block" *ngIf="model.invalid && model.touched">
+            Car model is required
+        </span>
+    </div>
+
+    <div class="form-group" [class.has-success]="model.dailyCost"
+    [class.has-error]="dailyCost.invalid && dailyCost.touched">
+    <label for="dailyCost">Car dailyCost </label>
+    <input #dailyCost="ngModel" required id="dailyCost" name="dailyCost" [(ngModel)]="car.dailyCost"
+        type="text" class="form-control">
+    <span class="help-block" *ngIf="dailyCost.invalid && dailyCost.touched">
+        Car dailyCost is required
+    </span>
+</div>
+
+<div class="form-group" [class.has-success]="dailyPenalty.valid"
+[class.has-error]="dailyPenalty.invalid && dailyPenalty.touched">
+<label for="dailyPenalty">Car dailyPenalty </label>
+<input #dailyPenalty="ngModel" required id="dailyPenalty" name="dailyPenalty" [(ngModel)]="car.dailyPenalty"
+    type="text" class="form-control">
+<span class="help-block" *ngIf="dailyPenalty.invalid && dailyPenalty.touched">
+    Car dailyPenalty is required
+</span>
+</div>
+
+
+<div class="form-group" [class.has-success]="gearType.valid"
+[class.has-error]="gearType.invalid && gearType.touched">
+<label for="gearType">Car gearType </label>
+<input #gearType="ngModel" required id="gearType" name="gearType" [(ngModel)]="car.gearType"
+type="text" class="form-control">
+<span class="help-block" *ngIf="gearType.invalid && gearType.touched">
+Car gearType is required
+</span>
+</div>
+
+
+
+
+
+
+
+    
+    
+    
+            
+    
+    
+    
+  
+       
+        
+        
+        
+      </div>
+    
+          <div class="panel-footer">
+              <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+    </div>
+    
+    </form>
+    
+    Angular generated form model: {{carForm.value | json}}
+    <br><br>>
+    Our user model: {{ car | json }}
+    
+    

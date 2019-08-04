@@ -17,8 +17,8 @@ export class CarRentFormComponent implements OnInit {
  car: Car;
  totalCost: number;
  totalPenalty: number;
-
-
+ term: string;
+ searchInput: Array<string> =[null];
  cars: Car[];
 
 
@@ -86,7 +86,10 @@ export class CarRentFormComponent implements OnInit {
 
   }
   
-
+  addToInputString($event) {
+    console.log('value:' + $event.target.value);
+    this.searchInput.push($event.target.value);
+  }
 
 }
 

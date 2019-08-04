@@ -4,15 +4,52 @@
 <h1> Thanks for choosing us! </h1>
 <h2> let's continue phase 2/3</h2>
 
+<br>
+<br>
+<br>
 
 
 
-<h5>Start Date: {{form.formData.pickUpDate}}</h5>
-<h5>End Date: {{form.formData.returnDate}} </h5>
+<div class="container">
+    <div class="row">
+  
+      <div class="col-xs-6">
+          <h5>Filter by any field you want! press enter to log</h5>
+
+          <input type="text" class="form-control" (keyup.enter)="addToInputString($event)"   [(ngModel)]="term" >
+          
+      </div>
+  
+      <div class="col-xs-6">
+          <h5> Your search history</h5>
+          <div *ngFor="let input of searchInput">
+            {{input}}
+          
+          </div>
+          
+      </div>
+  
+    </div>
+  </div>
+
+
+<h4>
+  Order Details:
+</h4>
+<br>
+
+<h5>Start Date: {{form.formData.pickUpDate | date:'shortTime'}}</h5>
+<h5>End Date: {{form.formData.returnDate | date:'shortTime'}} </h5>
 <h5>Pick Up Location {{form.formData.branch}} </h5>
 </div>
 
-<div *ngFor="let car of cars "  class="container">
+
+<h3>
+  Available Cars:
+</h3>
+<br>
+
+<div *ngFor="let car of cars | filter:term"  class="container">
   <!--&& car.branch.id == form.formData.branch.id-->
 
 <div *ngIf="car.isAvailable && car.branchObject.BranchName == form.formData.branch">
@@ -42,7 +79,7 @@
         <li class="list-group-item">Car daily cost: {{car?.carTypeObject.dailyCost}} </li>
         <li class="list-group-item">Car Mileage: {{car?.mileage}} </li>
       
-        <li class="list-group-item">Rent Days {{numberOfRentDays}} </li>
+        <li class="list-group-item">Rent Days {{form.formData.totalNumbweOfDays}} </li>
         <button (click)="GoToRentCarPage(car)" >Choose Model</button>
       
 

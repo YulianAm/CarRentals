@@ -25,16 +25,19 @@ export class CarComponent implements OnInit  {
   branches: branch[];
   branch: branch;
   branchId: number;
+  term: string;
 
 
 
-  constructor(private carService: CarsService, 
+  constructor(
+    private carService: CarsService, 
     private router: Router,
     private branchService: BranchService,
     private toastr: ToastrService,
     
     
-    public nav: NavService) {
+    public nav: NavService
+    ) {
     
     
 }
