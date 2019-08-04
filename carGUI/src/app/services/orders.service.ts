@@ -44,6 +44,7 @@ export class OrdersService {
   UpdateOrder (order: Order): Observable<any> {
 
     const urlOrders: string = 'RentalDetails/update/';
+    debugger;
 
     return this.http.put(baseUrl + urlOrders, order).pipe(
       tap(_ => console.log(`updated order number=${order.id}`))

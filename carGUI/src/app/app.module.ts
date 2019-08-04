@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
 import { CarComponent } from './cars/cars.component';
+import { ToastrModule } from 'ngx-toastr';
 
 import { UsersComponent } from './users/users.component'; 
 import { CreateUserComponent } from './users/create-user.component';
@@ -21,6 +22,7 @@ import { UserAuthentication } from './services/user.authontication';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './services/interceptor';
 import { ErrorInterceptor } from './services/error.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 // search module
@@ -33,6 +35,9 @@ import { SearchFormDataService } from './services/search-form-data.service';
 import { UniquePipe } from './pipes/unique.pipe';
 import { FinalRentFormComponent } from './final-rent-form/final-rent-form.component';
 import { EditCarComponent } from './cars/edit-car.component';
+import { OrdersComponent } from './orders/orders.component';
+import { CreateOrderComponent } from './orders/create-order.component';
+
 
 
 @NgModule({
@@ -53,7 +58,11 @@ import { EditCarComponent } from './cars/edit-car.component';
     SearchHomePageComponent,
     UniquePipe,
     FinalRentFormComponent,
-    EditCarComponent
+    EditCarComponent,
+    OrdersComponent,
+    CreateOrderComponent
+    
+
     
     
   ],
@@ -66,7 +75,15 @@ import { EditCarComponent } from './cars/edit-car.component';
     FormsModule,
     BsDatepickerModule.forRoot(),
     Ng2SearchPipeModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(
+    {  
+      positionClass:'top-left',  
+      closeButton: true,  
+        
+    })  ,
+    
     
     
     

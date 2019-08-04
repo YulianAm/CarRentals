@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { delay } from 'rxjs/operators';
 import { BranchService } from '../services/branch.service';
 import { branch } from '../models/branch';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -30,6 +31,7 @@ export class CarComponent implements OnInit  {
   constructor(private carService: CarsService, 
     private router: Router,
     private branchService: BranchService,
+    private toastr: ToastrService,
     
     
     public nav: NavService) {
@@ -108,9 +110,17 @@ SendToEditService(car: Car) {
   //console.log(branch);
   console.log(car);
 
-  this.carService.updateCar(car).subscribe();  
+  this.carService.updateCar(car).subscribe( res=> {
+    this.toastr.success('Updated car successfully', 'car Registered');
+  });  
   console.log("subitted to server");
+  alert("submitted succefully");
 
 }
+
+
+
+
+
 
 }

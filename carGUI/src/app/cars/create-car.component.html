@@ -15,6 +15,23 @@
             Car Number is required
             </span>
         </div>
+
+        <div class="form-group"  [class.has-success]="carType.valid" [class.has-error]="carType.invalid && carType.touched">
+            <label class="control-label" for="carType">car type </label>
+            <input  #carType="ngModel" required id="carType" name="carType" [(ngModel)]="car.carType" type="text" class="form-control">
+            <span class="help-block" *ngIf="carType.invalid && carType.touched">
+                carType required
+              </span>
+          </div>
+
+          <div class="form-group"  [class.has-success]="branchId.valid" [class.has-error]="branchId.invalid && branchId.touched">
+              <label class="control-label" for="carNumber">branch id  </label>
+              <input  #branchId="ngModel" required id="branchId" name="branchId" [(ngModel)]="car.branchId" type="text" class="form-control">
+              <span class="help-block" *ngIf="branchId.invalid && branchId.touched">
+                branch id required
+                </span>
+            </div>
+          
         
         
   
@@ -32,11 +49,6 @@
               
   
           
-        
-        <div class="form-group">
-          <label for="imagePath"> Path Photo </label>
-          <input id="imagePath" name="imagePath" [(ngModel)]="car.imagePath" type="text" class="form-control">
-        </div>
   
   
   
@@ -49,6 +61,8 @@
         <label for="isUndamaged">Is Undamaged?  </label> <br>
         <input id="isUndamaged" name="isUndamaged" [(ngModel)]="car.isUndamaged"  type="checkbox" class="form-check-input">
       </div>
+
+      <input type = "file" (change)="handleFileSelect($event)">
       
       
       

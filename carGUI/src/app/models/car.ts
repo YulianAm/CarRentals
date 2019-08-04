@@ -11,6 +11,7 @@ export class Car {
     mileage?: number;
     carTypeObject?: CarType;
     branchObject?: branch;
+    image?:any;
     
 //
    

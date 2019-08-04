@@ -1,0 +1,213 @@
+
+<div *ngIf="editable">
+    <form #orderForm="ngForm" ngNativeValidate (ngSubmit)="SendToEditService(order)">
+        <div class="panel panel-primary">
+
+            <div class="panel-heading">
+                <h3 class="panel-title"> Edit order </h3>
+            </div>
+
+            <div class="panel-body">
+
+                <!--<div class="form-group" [class.has-success]="carNumberControl.valid"
+                    [class.has-error]="carNumberControl.invalid && carNumberControl.touched">
+                    <label class="control-label" for="carNumber">Car Number </label>
+                    <input #carNumberControl="ngModel" required id="carNumber" name="carNumber"
+                        [(ngModel)]="car.carNumber" type="text" class="form-control">
+                    <span class="help-block" *ngIf="carNumberControl.invalid && carNumberControl.touched">
+                        Car Number is required
+                    </span>
+                </div>-->
+
+                <div>
+                    <h5> order to edit is: {{order.id}} </h5>
+
+
+
+                </div>
+
+
+
+
+
+
+
+
+
+                <div class="form-group" [class.has-success]="startdate.valid"
+                    [class.has-error]="startdate.invalid && startdate.touched">
+                    <label for="startdate">order start date </label>
+                    <input #startdate="ngModel" required id="startdate" name="startdate" [ngModel]="order.startDate | date:'yyyy-MM-dd'"
+                    (ngModelChange)="order.startDate  = $event" type="date" class="form-control">
+                    <span class="help-block" *ngIf="startdate.invalid && startdate.touched">
+                        start date is requiered
+                    </span>
+                </div>
+
+                <div class="form-group" [class.has-success]="returnDate.valid"
+                [class.has-error]="returnDate.invalid && returnDate.touched">
+                <label for="returnDate">order return Date  </label>
+                <input #returnDate="ngModel" required id="returnDate" name="returnDate" [ngModel]="order.returnDate | date:'yyyy-MM-dd'"
+                (ngModelChange)="order.returnDate  = $event" type="date" class="form-control">
+                <span class="help-block" *ngIf="returnDate.invalid && returnDate.touched">
+                    return date is requiered
+                </span>
+            </div>
+
+            <div class="form-group" [class.has-success]="actualReturnDate.valid"
+            [class.has-error]="actualReturnDate.invalid && actualReturnDate.touched">
+            <label for="actualReturnDate">actual Return Date  </label>
+            <input #actualReturnDate="ngModel" required id="actualReturnDate" name="actualReturnDate" [ngModel]="order.actualReturnDate | date:'yyyy-MM-dd'"
+            (ngModelChange)="order.actualReturnDate  = $event" type="date" class="form-control">
+            <span class="help-block" *ngIf="actualReturnDate.invalid && actualReturnDate.touched">
+                actualReturnDate is requiered
+            </span>
+        </div>
+
+        <div class="form-group" [class.has-success]="carNumber.valid"
+        [class.has-error]="carNumber.invalid && carNumber.touched">
+        <label for="carNumber"> Car Number </label>
+        <input #carNumber="ngModel" required id="carNumber" name="carNumber" [(ngModel)]="order.carNumber"
+            type="text" class="form-control">
+        <span class="help-block" *ngIf="carNumber.invalid && carNumber.touched">
+            Car Number is required
+        </span>
+    </div>
+
+
+
+
+
+
+
+
+
+                <div class="form-check">
+                    <label for="isActive">Is Active? </label> <br>
+                    <input id="isActive" name="isActive" [(ngModel)]="order.isActive" type="checkbox"
+                        class="form-check-input">
+                </div>
+
+
+               <!-- <div >
+                    <label for="power">Branch</label>
+                    <select  id="power" required [(ngModel)]="branch"   name="branch">
+                        <option *ngFor="let branch of branches" >{{branch.BranchName}}
+                        </option>
+                    </select>
+                </div> -->
+
+
+
+            </div>
+
+            <div class="panel-footer">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button (click)="noEdit()" class="btn btn-primary">exit</button>
+            </div>
+        </div>
+
+
+
+
+    </form>
+</div>
+
+
+
+
+
+<div class="panel panel-primary" *ngFor=" let order of orders ; index as i">
+    <div class="panel-heading">
+        <h3 class="panel-title"># {{ i+1 }} | order Id is: {{order.id }}  | </h3>
+    </div>
+    <div class="panel-body">
+        <div class="col-xs-10">
+            <div class="row vertical-align">
+                
+
+                <div class="col-xs-8">
+
+
+                    <div class="row">
+                        <div class="col-xs-4">
+                            order number
+                        </div>
+                        <div class="col-xs-4">
+                            {{ order.id }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-4">
+                            start date
+                        </div>
+                        <div class="col-xs-4">
+                            {{ order.startDate | date : 'shortDate'  }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            return date
+                        </div>
+                        <div class="col-xs-4">
+                            {{ order.returnDate  | date : 'shortDate'  }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-4">
+                            actual return date
+                        </div>
+                        <div class="col-xs-4">
+                            {{ order.actualReturnDate  | date : 'shortDate'  }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-4">
+                            user Id
+                        </div>
+                        <div class="col-xs-4">
+                            {{ order.userId }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-4">
+                            car number
+                        </div>
+                        <div class="col-xs-4">
+                            {{ order.carNumber }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-4">
+                            is active
+                        </div>
+                        <div class="col-xs-4">
+                            {{ order.isActive }}
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <div>
+                    <button class="btn btn-danger pull-right" data-toggle="confirmation" title="delete car"
+                        (click)="Delete(order)">x</button>
+                </div>
+                
+                <div>
+                    <button class="btn btn-primary pull-right" data-toggle="confirmation" title="edit car"
+                        (click)="Edit2(order)">Edit</button>
+                </div>
+
+
+
+
+
+
+            </div>

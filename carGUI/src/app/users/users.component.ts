@@ -7,6 +7,7 @@ import { TrustedUrlString } from '@angular/core/src/sanitization/bypass';
 import { _sanitizeUrl } from '@angular/core/src/sanitization/url_sanitizer';
 import { stringify } from 'querystring';
 import { NavService } from '../services/nav.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -25,7 +26,8 @@ export class UsersComponent implements OnInit {
 
   constructor(private usersService: UsersService,
     private sanitizer: DomSanitizer,
-    public nav: NavService) {
+    public nav: NavService,
+    private toastr: ToastrService) {
 
   }
 
@@ -50,9 +52,15 @@ export class UsersComponent implements OnInit {
     //this.car.branchId = this.branch.id;
     //console.log(branch);
     console.log(user);
+ 
 
-    this.usersService.updateUser(user).subscribe();
+    // this.usersService.updateUser(user).subscribe();
+    this.usersService.updateUser(user).subscribe(res=> {
+      this.toastr.success('Updated User successfully', 'User Registered');
+    });
+
     console.log("subitted to server");
+    alert("submitted succefully");
 
   }
 

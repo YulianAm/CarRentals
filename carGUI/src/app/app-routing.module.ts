@@ -11,7 +11,8 @@ import { CarRentFormComponent } from './car-rent-form/car-rent-form.component';
 import { SearchHomePageComponent } from './search-home-page/search-home-page.component';
 import { FinalRentFormComponent } from './final-rent-form/final-rent-form.component';
 import { EditCarComponent } from './cars/edit-car.component';
-
+import { OrdersComponent } from './orders/orders.component';
+import { CreateOrderComponent } from './orders/create-order.component';
 
 
 const routes: Routes = [
@@ -26,7 +27,9 @@ const routes: Routes = [
   { path: 'rentCar', component:  CarRentFormComponent},
   { path: 'searchHome', component:  SearchHomePageComponent},
   { path: 'finalForm', component:  FinalRentFormComponent},
-  { path: 'editCar', component:  EditCarComponent}
+  { path: 'editCar', component:  EditCarComponent},
+  { path: 'orders', component:  OrdersComponent},
+  { path: 'createOrder', component:  CreateOrderComponent},
  
 
   

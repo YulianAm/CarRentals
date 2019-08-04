@@ -42,7 +42,7 @@ namespace carsAPI.Controllers
                         }).ToList();
                         var response = new HttpResponseMessage(HttpStatusCode.OK);
                         response.Content = new StringContent(JsonConvert.SerializeObject(rentalDetailsEntity));
-                        response.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("applicatoin/json");
+                        response.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
                         return response;
 
                     }
@@ -113,14 +113,18 @@ namespace carsAPI.Controllers
                     try
                     {
                         var response = new HttpResponseMessage(HttpStatusCode.OK);
-                        var currentRental = db.carRentalDetails.SingleOrDefault(p => p.carNumber == rentalDetails.carNumber);
+                        var currentRental = db.carRentalDetails.SingleOrDefault(p => p.id == rentalDetails.id);
 
-                        currentRental.id = rentalDetails.id;
+                        //currentRental.id = rentalDetails.id;
+                        //currentRental.userId = rentalDetails.userId;
                         currentRental.startDate = rentalDetails.startDate;
                         currentRental.returnDate = rentalDetails.returnDate;
                         currentRental.actualReturnDate = rentalDetails.actualReturnDate;
-                        currentRental.userId = rentalDetails.userId;
+                        //currentRental.userId = rentalDetails.userId;
                         currentRental.carNumber = rentalDetails.carNumber;
+                        currentRental.isActive = rentalDetails.isActive;
+
+
                         db.SaveChanges();
                         return response;
                     }

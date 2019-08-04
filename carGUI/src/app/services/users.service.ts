@@ -46,12 +46,12 @@ export class UsersService {
 
     const urlUsers: string = 'users/update/';
 
-    return this.http.put(baseUrl +urlUsers, User).pipe(
+    return this.http.put(baseUrl +urlUsers, user ).pipe(
       tap(_ => console.log(`updated user id=${user.id}`))
     );
   }
 
-
+//
 
   CreateUser (user: User): Observable<User> {
 

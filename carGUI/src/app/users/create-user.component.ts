@@ -5,6 +5,7 @@ import { User } from '../models/user';
 import { NavService } from '../services/nav.service';
 import { Router } from '@angular/router';
 import { UsersService } from '../services/users.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-user',
@@ -35,7 +36,12 @@ export class CreateUserComponent implements OnInit {
 
   
 
-  constructor(private router:Router, private usersService: UsersService, public nav: NavService) { }
+  constructor(private router:Router, private usersService: UsersService, 
+    public nav: NavService,
+    private toastr: ToastrService
+    
+    
+    ) { }
 
   ngOnInit() {
     this.Get();
@@ -56,8 +62,10 @@ export class CreateUserComponent implements OnInit {
 
 
       console.log('created user:' + user);
-      this.usersService.CreateUser(this.user).subscribe();
-
+      this.usersService.CreateUser(this.user).subscribe(res=> {
+        this.toastr.success('Updated User successfully', 'User Registered');
+      });
+      alert("submitted succefully");
       
 
   }

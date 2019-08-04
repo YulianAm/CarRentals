@@ -11,7 +11,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~7.2.0",
+    "@angular/animations": "^7.2.15",
     "@angular/common": "~7.2.0",
     "@angular/compiler": "~7.2.0",
     "@angular/core": "~7.2.0",
@@ -26,6 +26,7 @@
     "lodash": "^4.17.15",
     "ng2-search-filter": "^0.5.1",
     "ngx-bootstrap": "^4.3.0",
+    "ngx-toastr": "^10.0.4",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"

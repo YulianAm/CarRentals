@@ -35,7 +35,7 @@ export class SearchHomePageComponent implements OnInit {
   ngOnInit() {
     this.GetBranches();
   }
-
+//
   GetBranches(): void {
     this.branchService.getBranches().subscribe( (brnch) => {
       //debugger;

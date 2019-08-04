@@ -1,3 +1,4 @@
+
 <div *ngIf="editable">
     <form #carForm="ngForm" ngNativeValidate (ngSubmit)="SendToEditService(car)">
         <div class="panel panel-primary">
@@ -171,7 +172,7 @@
                 </div>
                 <br>
                 <div>
-                    <button class="btn btn-danger pull-right" data-toggle="confirmation" title="edit car"
+                    <button class="btn btn-primary pull-right" data-toggle="confirmation" title="edit car"
                         (click)="Edit2(car)">Edit</button>
                 </div>
 

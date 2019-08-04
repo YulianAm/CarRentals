@@ -1,14 +1,14 @@
 <div *ngIf="editable">
-        <form #userForm="ngForm" ngNativeValidate (ngSubmit)="SendToEditService(user)">
-            <div class="panel panel-primary">
-    
-                <div class="panel-heading">
-                    <h3 class="panel-title"> Edit User </h3>
-                </div>
-    
-                <div class="panel-body">
-    
-                    <!--<div class="form-group" [class.has-success]="carNumberControl.valid"
+    <form #userForm="ngForm" ngNativeValidate (ngSubmit)="SendToEditService(user)">
+        <div class="panel panel-primary">
+
+            <div class="panel-heading">
+                <h3 class="panel-title"> Edit User </h3>
+            </div>
+
+            <div class="panel-body">
+
+                <!--<div class="form-group" [class.has-success]="carNumberControl.valid"
                         [class.has-error]="carNumberControl.invalid && carNumberControl.touched">
                         <label class="control-label" for="carNumber">Car Number </label>
                         <input #carNumberControl="ngModel" required id="carNumber" name="carNumber"
@@ -17,180 +17,226 @@
                             Car Number is required
                         </span>
                     </div>-->
-    
-                    <div>
-                        <h5> User to edit is: {{user.userName}} </h5>
-    
-    
-    
-                    </div>
-    
-    
 
-    
-                    <div class="form-group" [class.has-success]="username.valid"
-                        [class.has-error]="username.invalid && username.touched">
-                        <label for="username">User name </label>
-                        <input #username="ngModel" required id="userName" name="username" [(ngModel)]="user.userName"
-                            type="text" class="form-control">
-                        <span class="help-block" *ngIf="username.invalid && username.touched">
-                            username  is required
-                        </span>
-                    </div>
-    
-    
-    
-    
-    
-    
-    
-                    <div class="form-check">
-                        <label for="isAvailable">is admin?  </label> <br>
-                        <input id="isAvailable" name="isAvailable" [(ngModel)]="user.isAdmin" type="checkbox"
-                            class="form-check-input">
-                    </div>
-    
-                    <div class="form-check">
-                        <label for="isUndamaged">Is Undamaged? </label> <br>
-                        <input id="isUndamaged" name="isUndamaged" [(ngModel)]="car.isUndamaged" type="checkbox"
-                            class="form-check-input">
-                    </div>
-    
-                   <!-- <div >
+
+
+
+
+                <div class="form-group" [class.has-success]="username.valid"
+                    [class.has-error]="username.invalid && username.touched">
+                    <label for="username">User name </label>
+                    <input #username="ngModel" required id="userName" name="username" [(ngModel)]="user.userName"
+                        type="text" class="form-control">
+                    <span class="help-block" *ngIf="username.invalid && username.touched">
+                        username is required
+                    </span>
+                </div>
+
+                <div class="form-group" [class.has-success]="userPassword.valid"
+                    [class.has-error]="userPassword.invalid && userPassword.touched">
+                    <label for="firstName">userPassword </label>
+                    <input #userPassword="ngModel" required id="userPassword" name="userPassword"
+                        [(ngModel)]="user.userPassword" type="text" class="form-control">
+                    <span class="help-block" *ngIf="userPassword.invalid && userPassword.touched">
+                        userPassword is required
+                    </span>
+                </div>
+
+                <div class="form-group" [class.has-success]="firstName.valid"
+                    [class.has-error]="firstName.invalid && firstName.touched">
+                    <label for="firstName">First Name </label>
+                    <input #firstName="ngModel" required id="firstName" name="firstName" [(ngModel)]="user.firstName"
+                        type="text" class="form-control">
+                    <span class="help-block" *ngIf="firstName.invalid && firstName.touched">
+                        First Name is required
+                    </span>
+                </div>
+
+                <div class="form-group" [class.has-success]="lastName.valid"
+                    [class.has-error]="lastName.invalid && lastName.touched">
+                    <label for="firstName">Last Name </label>
+                    <input #lastName="ngModel" required id="firstName" name="lastName" [(ngModel)]="user.lastName"
+                        type="text" class="form-control">
+                    <span class="help-block" *ngIf="lastName.invalid && lastName.touched">
+                        Last Name is required
+                    </span>
+                </div>
+
+                <div class="form-group" [class.has-success]="countryId.valid"
+                    [class.has-error]="countryId.invalid && countryId.touched">
+                    <label for="firstName">Country Id </label>
+                    <input #countryId="ngModel" required id="countryId" name="countryId" [(ngModel)]="user.countryId"
+                        type="text" class="form-control">
+                    <span class="help-block" *ngIf="countryId.invalid && countryId.touched">
+                        countryId is required
+                    </span>
+                </div>
+
+                <div class="form-group" [class.has-success]="email.valid"
+                    [class.has-error]="email.invalid && email.touched">
+                    <label for="firstName">Country Id </label>
+                    <input #email="ngModel" required id="email" name="email" [(ngModel)]="user.email" type="text"
+                        class="form-control">
+                    <span class="help-block" *ngIf="email.invalid && email.touched">
+                        email is required
+                    </span>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="form-check">
+                    <label for="isAdmin">is admin? </label> <br>
+                    <input id="isAdmin" name="isAdmin" [(ngModel)]="user.isAdmin" type="checkbox"
+                        class="form-check-input">
+                </div>
+
+
+                <!-- <div >
                         <label for="power">Branch</label>
                         <select  id="power" required [(ngModel)]="branch"   name="branch">
                             <option *ngFor="let branch of branches" >{{branch.BranchName}}
                             </option>
                         </select>
                     </div> -->
-    
-    
-    
-                </div>
-    
-                <div class="panel-footer">
-                    <button type="submit" class="btn btn-primary">Save</button>
-                    <button (click)="noEdit()" class="btn btn-primary">exit</button>
-                </div>
-            </div>
-    
-
-    
-        </form>
-    </div>
-    
-
-    
 
 
 
+            </div>
 
-
-
-
-
-<div class = "panel panel-primary" *ngFor=" let user of users ; index as i">
-<div class="panel-heading">
-  <h3 class="panel-title"># {{ i+1 }} |   {{user.firstName}}  {{user.lastName}} |  </h3>
-</div>
-<div class="panel-body">
-<div class="col-xs-10">
-  <div class="row vertical-align" >
-    <div  class="col-xs-4">
-
-      <img [routerLink]="['/createUser']" (click)="injectForm(user)" src="data:image/png;base64,{{user.image}}"     >
-
-    </div>
-
-    <div class="col-xs-8">
-     
-
-        <div class="row">
-            <div class="col-xs-4">
-                id
-            </div>
-            <div class="col-xs-4">
-                 {{ user.id }}
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-xs-4">
-                first name 
-            </div>
-            <div class="col-xs-4">
-                   {{ user.firstName }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-4">
-                last name 
-            </div>
-            <div class="col-xs-4">
-                  {{ user.lastName }}
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-xs-4">
-                Date oF Birth
-            </div>
-            <div class="col-xs-4">
-                  {{ user.dateOfBirth | date }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-4">
-                Gender
-            </div>
-            <div class="col-xs-4">
-                  {{ user.gender }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-4">
-                Email
-            </div>
-            <div class="col-xs-4">
-                  {{ user.email }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-4">
-                Country Id
-            </div>
-            <div class="col-xs-4">
-                  {{ user.countryId }}
+            <div class="panel-footer">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button (click)="noEdit()" class="btn btn-primary">exit</button>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-xs-4">
-                username
-            </div>
-            <div class="col-xs-4">
-                  {{ user.userName }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-4">
-                is Admin? 
-            </div>
-            <div class="col-xs-4">
-                  {{ user.isAdmin }}
-            </div>
-        </div>
 
-          
-    </div>
-    <div >
-        <button class="btn btn-danger pull-right"  data-toggle="confirmation" title="delete user"
-        (click)="Delete(user)">x</button>
-    </div>
-    <div>
-            <button class="btn btn-danger pull-right" data-toggle="confirmation" title="edit car"
-                (click)="Edit2(user)">Edit</button>
-        </div>
+
+    </form>
 </div>
 
 
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary" *ngFor=" let user of users ; index as i">
+    <div class="panel-heading">
+        <h3 class="panel-title"># {{ i+1 }} | {{user.firstName}} {{user.lastName}} | </h3>
+    </div>
+    <div class="panel-body">
+        <div class="col-xs-10">
+            <div class="row vertical-align">
+                <div class="col-xs-4">
+
+                    <img [routerLink]="['/createUser']" (click)="injectForm(user)"
+                        src="data:image/png;base64,{{user.image}}">
+
+                </div>
+
+                <div class="col-xs-8">
+
+
+                    <div class="row">
+                        <div class="col-xs-4">
+                            id
+                        </div>
+                        <div class="col-xs-4">
+                            {{ user.id }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-4">
+                            first name
+                        </div>
+                        <div class="col-xs-4">
+                            {{ user.firstName }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            last name
+                        </div>
+                        <div class="col-xs-4">
+                            {{ user.lastName }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-4">
+                            Date oF Birth
+                        </div>
+                        <div class="col-xs-4">
+                            {{ user.dateOfBirth | date }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            Gender
+                        </div>
+                        <div class="col-xs-4">
+                            {{ user.gender }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            Email
+                        </div>
+                        <div class="col-xs-4">
+                            {{ user.email }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            Country Id
+                        </div>
+                        <div class="col-xs-4">
+                            {{ user.countryId }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-4">
+                            username
+                        </div>
+                        <div class="col-xs-4">
+                            {{ user.userName }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            is Admin?
+                        </div>
+                        <div class="col-xs-4">
+                            {{ user.isAdmin }}
+                        </div>
+                    </div>
+
+
+                </div>
+                <div>
+                        <button class="btn btn-primary pull-right" data-toggle="confirmation" title="edit car"
+                            (click)="Edit2(user)">Edit</button>
+                    </div>
+                <div>
+                    <button class="btn btn-danger pull-right" data-toggle="confirmation" title="delete user"
+                        (click)="Delete(user)">x</button>
+                </div>
+                
+            </div>

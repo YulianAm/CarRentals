@@ -119,7 +119,10 @@ namespace carsAPI.Controllers
                             isAvailable = carEntity.isAvailable,
                             isUndamaged = carEntity.isUndamaged,
                             //branch = carEntity.branch,
-                            mileage = carEntity.mileage
+                            mileage = carEntity.mileage,
+                            branchId = carEntity.branchId,
+                           
+                            image = carEntity.image
 
                         };
 
