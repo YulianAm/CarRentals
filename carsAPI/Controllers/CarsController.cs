@@ -79,11 +79,11 @@ namespace carsAPI.Controllers
                     var response = new HttpResponseMessage(HttpStatusCode.OK);
                     var carsEntitiesOriginal = db.cars.ToList();
 
-                    var currentCar = carsEntitiesOriginal.Where(p => p.carNumber == carNumber).FirstOrDefault() ;
+                    var currentCar = carsEntitiesOriginal.Where(p => p.carNumber == carNumber).FirstOrDefault();
 
-                    
 
-                
+
+
                     response.Content = new StringContent(JsonConvert.SerializeObject(currentCar));
                     response.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
 
@@ -143,7 +143,7 @@ namespace carsAPI.Controllers
         }
 
         // PUT: api/Cars/5
-        //[BasicAuthentication]
+        [BasicAuthentication]
         [HttpPut]
         [Route("update")]
         public HttpResponseMessage update(carEntity car)
@@ -156,13 +156,15 @@ namespace carsAPI.Controllers
                     {
                         var response = new HttpResponseMessage(HttpStatusCode.OK);
                         var currentCar = db.cars.SingleOrDefault(p => p.carNumber == car.carNumber);
-                        //currentCar.carNumber = car.carNumber;
-                        //currentCar.carType = car.carType;
+
+                        currentCar.carNumber = car.carNumber;
+                        currentCar.carType = car.carType;
                         currentCar.isAvailable = car.isAvailable;
                         currentCar.isUndamaged = car.isUndamaged;
-                        //currentCar.branch = car.branch;
-                        //currentCar.mileage = car.mileage;
+                        //currentCar.branchId = car.branchId ;
+                        currentCar.mileage = car.mileage;
                         db.SaveChanges();
+
                         return response;
                     }
                     catch

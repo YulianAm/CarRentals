@@ -8,7 +8,7 @@
 
             <div class="panel-body">
 
-                <div class="form-group" [class.has-success]="carNumberControl.valid"
+                <!--<div class="form-group" [class.has-success]="carNumberControl.valid"
                     [class.has-error]="carNumberControl.invalid && carNumberControl.touched">
                     <label class="control-label" for="carNumber">Car Number </label>
                     <input #carNumberControl="ngModel" required id="carNumber" name="carNumber"
@@ -16,7 +16,17 @@
                     <span class="help-block" *ngIf="carNumberControl.invalid && carNumberControl.touched">
                         Car Number is required
                     </span>
+                </div>-->
+
+                <div>
+                    <h5> Car to edit is: {{car.carNumber}} </h5>
+
+
+
                 </div>
+
+
+
 
 
 
@@ -38,6 +48,7 @@
 
 
 
+
                 <div class="form-check">
                     <label for="isAvailable">Is Available? </label> <br>
                     <input id="isAvailable" name="isAvailable" [(ngModel)]="car.isAvailable" type="checkbox"
@@ -50,6 +61,14 @@
                         class="form-check-input">
                 </div>
 
+               <!-- <div >
+                    <label for="power">Branch</label>
+                    <select  id="power" required [(ngModel)]="branch"   name="branch">
+                        <option *ngFor="let branch of branches" >{{branch.BranchName}}
+                        </option>
+                    </select>
+                </div> -->
+
 
 
             </div>
@@ -61,7 +80,7 @@
         </div>
 
 
-        
+
 
     </form>
 </div>

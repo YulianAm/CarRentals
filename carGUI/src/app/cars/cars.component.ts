@@ -5,6 +5,8 @@ import { NavService } from '../services/nav.service';
 import { CarsService } from '../services/car.service';
 import { Router } from '@angular/router';
 import { delay } from 'rxjs/operators';
+import { BranchService } from '../services/branch.service';
+import { branch } from '../models/branch';
 
 
 
@@ -19,9 +21,15 @@ export class CarComponent implements OnInit  {
   editable: boolean;
   cars: Car[];
   car: Car;
+  branches: branch[];
+  branch: branch;
+  branchId: number;
+
+
 
   constructor(private carService: CarsService, 
     private router: Router,
+    private branchService: BranchService,
     
     
     public nav: NavService) {
@@ -34,8 +42,18 @@ ngOnInit(): void {
   this.nav.show();
 
   this.Get();
+  this.GetBranches();
+
 }
 
+GetBranches(): void {
+  this.branchService.getBranches().subscribe( (brnch) => {
+    //debugger;
+
+    this.branches = brnch;
+    //console.log(this.branches);
+  });
+}
 
 Get(): void {
   this.carService.getCars()
@@ -64,13 +82,16 @@ Edit2(car: Car): void {
 
   //this.cars = this.cars.filter(h => h !== car);
   //this.carService.updateCar(car).subscribe();
-  this.carService.carToEdit = car;
+
+  //this.carService.carToEdit = car;
   this.car = car;
-  console.log( this.carService.carToEdit);
+
+ // console.log( this.carService.carToEdit);
 
   //console.log(this.carService.carToEdit = car);
+
   //this.carService.carToEdit = car;
-  
+  //this.carService.updateCar(car).subscribe();  
   
 
   
@@ -83,7 +104,11 @@ noEdit() {
 }
 
 SendToEditService(car: Car) {
-  this.carService.updateCar();
+  //this.car.branchId = this.branch.id;
+  //console.log(branch);
+  console.log(car);
+
+  this.carService.updateCar(car).subscribe();  
   console.log("subitted to server");
 
 }

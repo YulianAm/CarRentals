@@ -1,3 +1,90 @@
+<div *ngIf="editable">
+        <form #userForm="ngForm" ngNativeValidate (ngSubmit)="SendToEditService(user)">
+            <div class="panel panel-primary">
+    
+                <div class="panel-heading">
+                    <h3 class="panel-title"> Edit User </h3>
+                </div>
+    
+                <div class="panel-body">
+    
+                    <!--<div class="form-group" [class.has-success]="carNumberControl.valid"
+                        [class.has-error]="carNumberControl.invalid && carNumberControl.touched">
+                        <label class="control-label" for="carNumber">Car Number </label>
+                        <input #carNumberControl="ngModel" required id="carNumber" name="carNumber"
+                            [(ngModel)]="car.carNumber" type="text" class="form-control">
+                        <span class="help-block" *ngIf="carNumberControl.invalid && carNumberControl.touched">
+                            Car Number is required
+                        </span>
+                    </div>-->
+    
+                    <div>
+                        <h5> User to edit is: {{user.userName}} </h5>
+    
+    
+    
+                    </div>
+    
+    
+
+    
+                    <div class="form-group" [class.has-success]="username.valid"
+                        [class.has-error]="username.invalid && username.touched">
+                        <label for="username">User name </label>
+                        <input #username="ngModel" required id="userName" name="username" [(ngModel)]="user.userName"
+                            type="text" class="form-control">
+                        <span class="help-block" *ngIf="username.invalid && username.touched">
+                            username  is required
+                        </span>
+                    </div>
+    
+    
+    
+    
+    
+    
+    
+                    <div class="form-check">
+                        <label for="isAvailable">is admin?  </label> <br>
+                        <input id="isAvailable" name="isAvailable" [(ngModel)]="user.isAdmin" type="checkbox"
+                            class="form-check-input">
+                    </div>
+    
+                    <div class="form-check">
+                        <label for="isUndamaged">Is Undamaged? </label> <br>
+                        <input id="isUndamaged" name="isUndamaged" [(ngModel)]="car.isUndamaged" type="checkbox"
+                            class="form-check-input">
+                    </div>
+    
+                   <!-- <div >
+                        <label for="power">Branch</label>
+                        <select  id="power" required [(ngModel)]="branch"   name="branch">
+                            <option *ngFor="let branch of branches" >{{branch.BranchName}}
+                            </option>
+                        </select>
+                    </div> -->
+    
+    
+    
+                </div>
+    
+                <div class="panel-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button (click)="noEdit()" class="btn btn-primary">exit</button>
+                </div>
+            </div>
+    
+
+    
+        </form>
+    </div>
+    
+
+    
+
+
+
+
 
 
 
@@ -100,6 +187,10 @@
         <button class="btn btn-danger pull-right"  data-toggle="confirmation" title="delete user"
         (click)="Delete(user)">x</button>
     </div>
+    <div>
+            <button class="btn btn-danger pull-right" data-toggle="confirmation" title="edit car"
+                (click)="Edit2(user)">Edit</button>
+        </div>
 </div>
 
 

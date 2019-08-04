@@ -14,6 +14,7 @@ import { UsersService } from '../services/users.service';
 export class CreateUserComponent implements OnInit {
   users: User[];
   selectedFile = null;
+  base64textString: String="";
 
   user: User = {
     id: null,
@@ -39,7 +40,7 @@ export class CreateUserComponent implements OnInit {
   ngOnInit() {
     this.Get();
     this.nav.show();
-    this.user = this.usersService.formData;
+    //this.user = this.usersService.formData;
     console.log(this.nav.SignUp);
   }
 
@@ -49,12 +50,15 @@ export class CreateUserComponent implements OnInit {
 
   }
   Create(user: User): void {
+    this.user.image = this.base64textString;
 
 
 
 
       console.log('created user:' + user);
       this.usersService.CreateUser(this.user).subscribe();
+
+      
 
   }
 
@@ -76,5 +80,23 @@ onFileSelected(event) {
 
 onUpload() {}
 
+handleFileSelect(evt){
+  var files = evt.target.files;
+  var file = files[0];
+
+if (files && file) {
+    var reader = new FileReader();
+
+    reader.onload =this._handleReaderLoaded.bind(this);
+
+    reader.readAsBinaryString(file);
+}
+}
+
+_handleReaderLoaded(readerEvt) {
+ var binaryString = readerEvt.target.result;
+        this.base64textString= btoa(binaryString);
+        //console.log(btoa(binaryString));
+}
 
 }

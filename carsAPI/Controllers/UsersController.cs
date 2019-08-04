@@ -112,7 +112,8 @@ namespace carsAPI.Controllers
                         gender = userEntity.gender,
                         email = userEntity.email,
                         userPassword = userEntity.userPassword,
-                        isAdmin = userEntity.isAdmin
+                        isAdmin = userEntity.isAdmin,
+                        image = userEntity.image
 
 
                     };

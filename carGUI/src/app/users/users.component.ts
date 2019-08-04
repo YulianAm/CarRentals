@@ -15,45 +15,69 @@ import { NavService } from '../services/nav.service';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-  users: User[] ;
-  
+  users: User[];
+  editable: boolean;
+  user: User;
 
-  
-  
-   
 
-  constructor(private usersService: UsersService, private sanitizer: DomSanitizer, public nav: NavService) {
 
-   }
+
+
+  constructor(private usersService: UsersService,
+    private sanitizer: DomSanitizer,
+    public nav: NavService) {
+
+  }
 
   ngOnInit() {
     this.Get();
     this.nav.show();
- 
 
 
-     
+
+
+  }
+
+  Edit2(user: User): void {
+    document.documentElement.scrollTop = 0;
+    this.editable = true;
+    // this.usersService.updateUser = user;
+    this.user = user;
   }
 
 
+  SendToEditService(user: User) {
+    //this.car.branchId = this.branch.id;
+    //console.log(branch);
+    console.log(user);
+
+    this.usersService.updateUser(user).subscribe();
+    console.log("subitted to server");
+
+  }
 
   Get(): void {
     this.usersService.getUsers()
-    .subscribe(users => this.users = users);
-    
+      .subscribe(users => this.users = users);
+
   }
-  
+
+  noEdit() {
+    this.editable = false;
+  }
+
   Delete(user: User): void {
-    if(confirm('you sure you want to delete  ' + user.firstName + ' ' + user.lastName + '?')) {  
+    if (confirm('you sure you want to delete  ' + user.firstName + ' ' + user.lastName + '?')) {
       this.users = this.users.filter(h => h !== user);
-      this.usersService.deleteUser(user).subscribe();}
+      this.usersService.deleteUser(user).subscribe();
+    }
 
 
-  
 
-    
+
+
   }
-  
+
   Edit(user: User): void {
     this.users = this.users.filter(h => h !== user);
     this.usersService.updateUser(user).subscribe();
@@ -64,14 +88,14 @@ export class UsersComponent implements OnInit {
 
 
   }
- /*sanitizeURL(users: User[]): void {
-   
-  for (let i =0; i <10; i++) {
-    this.users[i].image = _sanitizeUrl(stringify(users[i].image))
-
-
-  }
+  /*sanitizeURL(users: User[]): void {
+    
+   for (let i =0; i <10; i++) {
+     this.users[i].image = _sanitizeUrl(stringify(users[i].image))
  
-
-}*/
+ 
+   }
+  
+ 
+ }*/
 }
